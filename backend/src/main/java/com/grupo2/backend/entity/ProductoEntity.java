@@ -1,6 +1,8 @@
 package com.grupo2.backend.entity;
 
+
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.grupo2.backend.dto.ProductoDto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,10 +10,13 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 @Data
-@NoargsConstructor
+@NoArgsConstructor
 @Entity
 @Table (name="Producto")
 public class ProductoEntity {
@@ -30,5 +35,12 @@ public class ProductoEntity {
         super();
         this.id = id;
         this.name_product = name_product;
+    }
+
+    public ProductoDto ToDto(){
+        ProductoDto dto = new ProductoDto();
+        dto.setId(this.getId());
+        dto.setName_product(this.getName_product());
+        return dto;
     }
 }
