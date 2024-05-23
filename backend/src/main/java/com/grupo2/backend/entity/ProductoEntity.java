@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-@Table (name="Producto")
+@Table (name="producto")
 public class ProductoEntity {
 
     @Id
@@ -37,7 +37,7 @@ public class ProductoEntity {
         this.name_product = name_product;
     }
 
-    public ProductoDto ToDto(){
+    public ProductoDto toDto(){
         ProductoDto dto = new ProductoDto();
         dto.setId(this.getId());
         dto.setName_product(this.getName_product());
