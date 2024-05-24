@@ -29,13 +29,13 @@ public class ControladorProducto {
 	private ICrudServiceProducto servicio;
 
 	@ResponseBody
-	@PostMapping("REST")
+	@PostMapping("/REST")
 	public ProductoDto agregarProducto(@Valid @NonNull @RequestBody ProductoDto dto) {
 		return servicio.save(dto);
 	}
 
 	@ResponseBody
-	@GetMapping("REST/{id}")
+	@GetMapping("/REST/{id}")
 	public ProductoDto getProductoById(@PathVariable("id") int id) {
 		Optional<ProductoDto> oDto = servicio.findById(id);
 		if (oDto.isPresent()) {
@@ -47,7 +47,7 @@ public class ControladorProducto {
 	}
 
 	@ResponseBody
-	@PutMapping(("REST"))
+	@PutMapping(("/REST"))
 	public ProductoDto updateProducto(@Valid @NonNull @RequestBody ProductoDto dto) {
 		Optional<ProductoDto> oDto = servicio.findById(dto.getId());
 		if (oDto.isPresent() == true) {
@@ -57,7 +57,7 @@ public class ControladorProducto {
 	}
 
 	@ResponseBody
-	@DeleteMapping("REST/{id}")
+	@DeleteMapping("/REST/{id}")
 	public boolean deleteProductoById(@PathVariable("id") int id) {
 		Optional<ProductoDto> oDto = servicio.findById(id);
 		if (oDto.isPresent() == true) {
@@ -68,7 +68,7 @@ public class ControladorProducto {
 		}
 	}
 	@ResponseBody
-	@GetMapping("REST")
+	@GetMapping("/REST")
 	public List<ProductoDto> getAllProductos(@RequestParam(name = "search", required = false) String search) {
 	    return servicio.findAll(search);
 	}
