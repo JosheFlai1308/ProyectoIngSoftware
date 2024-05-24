@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.grupo2.backend.dto.ProductoDto;
 import com.grupo2.backend.service.ICrudServiceProducto;
@@ -28,13 +27,13 @@ public class ControladorProducto {
     @Autowired
 	private ICrudServiceProducto servicio;
 
-	@ResponseBody
+	
 	@PostMapping("/REST")
 	public ProductoDto agregarProducto(@Valid @NonNull @RequestBody ProductoDto dto) {
 		return servicio.save(dto);
 	}
 
-	@ResponseBody
+	
 	@GetMapping("/REST/{id}")
 	public ProductoDto getProductoById(@PathVariable("id") int id) {
 		Optional<ProductoDto> oDto = servicio.findById(id);
@@ -46,7 +45,7 @@ public class ControladorProducto {
 		}
 	}
 
-	@ResponseBody
+	
 	@PutMapping(("/REST"))
 	public ProductoDto updateProducto(@Valid @NonNull @RequestBody ProductoDto dto) {
 		Optional<ProductoDto> oDto = servicio.findById(dto.getId());
@@ -56,7 +55,7 @@ public class ControladorProducto {
 			return null;
 	}
 
-	@ResponseBody
+	
 	@DeleteMapping("/REST/{id}")
 	public boolean deleteProductoById(@PathVariable("id") int id) {
 		Optional<ProductoDto> oDto = servicio.findById(id);
@@ -67,7 +66,7 @@ public class ControladorProducto {
 			return false;
 		}
 	}
-	@ResponseBody
+	
 	@GetMapping("/REST")
 	public List<ProductoDto> getAllProductos(@RequestParam(name = "search", required = false) String search) {
 	    return servicio.findAll(search);
