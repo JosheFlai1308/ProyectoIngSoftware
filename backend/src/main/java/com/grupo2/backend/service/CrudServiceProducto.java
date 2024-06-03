@@ -20,22 +20,22 @@ public class CrudServiceProducto implements ICrudServiceProducto {
 	private IProductoRepository data;
 
 	@Override
-	public List<ProductoDto> findAll(String key) {
-//	    if (key != null) {
-//          List<ProductoEntity> listE = (List<ProductoEntity>) data.findAll(key);
-//          List<ProductoDto> listDto = new ArrayList<>();
-//          for (ProductoEntity e : listE) {
-//              listDto.add(e.toDto());
-//          }
-//          return listDto;
-//          }
-// PARTE CON FILTRO 
+	public List<ProductoDto> findAll(String search) {
+		if (search != null) {
+			List<ProductoEntity> listE = (List<ProductoEntity>) data.findAll(search);
+			List<ProductoDto> listDto = new ArrayList<>();
+			for (ProductoEntity e : listE) {
+				listDto.add(e.toDto());
+			}
+			return listDto;
+		}
+
 		List<ProductoEntity> listE = (List<ProductoEntity>) data.findAll();
 		List<ProductoDto> listDto = new ArrayList<>();
 		for (ProductoEntity e : listE) {
 			listDto.add(e.toDto());
 		}
-		return listDto;		
+		return listDto;
 	}
 
 	@Override
@@ -56,6 +56,5 @@ public class CrudServiceProducto implements ICrudServiceProducto {
 	public void delete(ProductoDto dto) {
 		data.delete(dto.toEntity());
 	}
-
 
 }
