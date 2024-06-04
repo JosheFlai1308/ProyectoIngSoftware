@@ -1,7 +1,5 @@
 package com.grupo2.backend.entity;
 
-import jakarta.validation.constraints.NotBlank;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.grupo2.backend.dto.EncargadoDto;
 
@@ -11,7 +9,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -25,20 +23,20 @@ public class EncargadoEntity {
     private int id;
 
     @NotBlank
-    @Column(name = "name_encargado")
-    private String nameEncargado;
+    @Column(name = "nombre_encargado")
+    private String nombre_encargado;
 
     public EncargadoEntity (@JsonProperty("id") int id,
-                    @JsonProperty("name_encargado") String nameEncargado){
+                    @JsonProperty("nombre_encargado") String nombre_encargado){
         super();
         this.id = id;
-        this.nameEncargado = nameEncargado;
+        this.nombre_encargado = nombre_encargado;
     }
 
     public EncargadoDto toDto(){
     EncargadoDto dto = new EncargadoDto();
     dto.setId(this.getId());
-    dto.setNameEncargado(this.getNameEncargado());
+    dto.setNombre_encargado(this.getNombre_encargado());
     return dto;
     }
 

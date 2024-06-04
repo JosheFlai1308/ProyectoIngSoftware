@@ -12,13 +12,13 @@ import lombok.NoArgsConstructor;
 public class EncargadoDto {
         private int id;
 
-    private String nameEncargado;
+    private String nombre_encargado;
 
 
     public EncargadoEntity toEntity (){
         EncargadoEntity e = new EncargadoEntity();
         e.setId(this.getId());
-        e.setNameEncargado(this.getNameEncargado());
+        e.setNombre_encargado(this.getNombre_encargado());
         return e;
     }
 }

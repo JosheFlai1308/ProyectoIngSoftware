@@ -26,21 +26,21 @@ public class ProductoEntity {
     private int id;
 
     @NotBlank
-    @Column(name="name_product")
-    private String name_product;
+    @Column(name="nombre_producto")
+    private String nombre_producto;
 
 
     public ProductoEntity (@JsonProperty("id") int id,
-                            @JsonProperty("name_product") String name_product){
+                            @JsonProperty("nombre_producto") String nombre_producto){
         super();
         this.id = id;
-        this.name_product = name_product;
+        this.nombre_producto = nombre_producto;
     }
 
     public ProductoDto toDto(){
         ProductoDto dto = new ProductoDto();
         dto.setId(this.getId());
-        dto.setName_product(this.getName_product());
+        dto.setNombre_producto(this.getNombre_producto());
         return dto;
     }
 }

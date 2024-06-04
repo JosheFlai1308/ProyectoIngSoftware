@@ -13,13 +13,13 @@ public class ProductoDto {
     
     private int id;
 
-    private String name_product;
+    private String nombre_producto;
 
 
     public ProductoEntity toEntity (){
         ProductoEntity e = new ProductoEntity();
         e.setId(this.getId());
-        e.setName_product(this.getName_product());
+        e.setNombre_producto(this.getNombre_producto());
         return e;
     }
 }

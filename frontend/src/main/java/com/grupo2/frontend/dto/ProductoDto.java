@@ -11,5 +11,5 @@ public class ProductoDto {
 
     private int id;
 
-    private String name_product;
+    private String nombre_producto;
 }

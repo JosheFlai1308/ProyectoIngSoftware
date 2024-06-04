@@ -35,13 +35,13 @@ public class SecurityConfig {
             .formLogin(form -> form
                 .loginPage("/login")
                 .permitAll()
-                .defaultSuccessUrl("/menu/REST")
+                .defaultSuccessUrl("/producto/listar/REST")
                 .usernameParameter("admin")
                 .passwordParameter("password")
             )
             .logout(logout -> logout
                 .permitAll()
-                .logoutSuccessUrl("/home/REST")
+                .logoutSuccessUrl("/producto/listar/REST")
             )
             .httpBasic(httpBasic -> httpBasic
                 .authenticationEntryPoint(authenticationEntryPoint)

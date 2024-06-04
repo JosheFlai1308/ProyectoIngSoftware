@@ -4,10 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.grupo2.frontend.dto.ProductoDto;
@@ -16,6 +18,8 @@ import com.grupo2.frontend.service.ICrudServiceProducto;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
+@Controller 
+@RequestMapping("producto")
 public class ControladorProducto {
 
     @Autowired
@@ -23,10 +27,10 @@ public class ControladorProducto {
 
 	//http://localhost:8081/producto/listar/REST
     @GetMapping("listar/REST")
-    public String listarREST(Model model,@RequestParam(name="key", required=false)String key, HttpServletRequest request) {
+    public String listarREST(Model model,@RequestParam(name="search", required=false)String search, HttpServletRequest request) {
     	List<ProductoDto> productos = null;
 		try {
-			productos = servicio.findAllREST(key);
+			productos = servicio.findAllREST(search);
 		}
 		catch (Exception e) {
 			model.addAttribute("errorMessage",e.getMessage());
@@ -35,7 +39,7 @@ public class ControladorProducto {
 		}
 		if (productos!=null){
 			model.addAttribute("productos", productos);
-			model.addAttribute("key",key);
+			model.addAttribute("search",search);
 			model.addAttribute("Message", "Se han cargado todas las productos");
 		}
 		else
@@ -76,13 +80,13 @@ public class ControladorProducto {
 		return "rest/producto/form";
     }
 
-    //http://localhost:8081/comprobante/grabar
+    //http://localhost:8081/producto/grabar
     @PostMapping("grabar/REST")
-    public String saveREST(@Valid ProductoDto v, Model model) {
+    public String saveREST(@Valid ProductoDto p, Model model) {
     	ProductoDto producto = null;
-    	if (v.getId()==0) {
+    	if (p.getId()==0) {
     		try {
-    			producto = servicio.saveREST(v);
+    			producto = servicio.saveREST(p);
 			}
 			catch (Exception e) {
 				model.addAttribute("errorMessage", e.getMessage());
@@ -97,7 +101,7 @@ public class ControladorProducto {
     	}else
 		{
 			try {
-				producto = servicio.editarREST(v);
+				producto = servicio.editarREST(p);
 			}
 			catch (Exception e)
 			{
@@ -113,7 +117,7 @@ public class ControladorProducto {
 		return "redirect:/producto/listar/REST";
     }
 
-    //http://localhost:8081/comprobante/eliminar/id
+    //http://localhost:8081/producto/eliminar/id
     @GetMapping("eliminar/REST/{id}")
     public String deleteREST(@PathVariable int id, Model model) {
     	ProductoDto producto;

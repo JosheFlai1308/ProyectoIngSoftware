@@ -10,6 +10,6 @@ import com.grupo2.backend.entity.ProductoEntity;
 
 @Repository
 public interface IProductoRepository extends CrudRepository<ProductoEntity, Integer> {
-    @Query("SELECT p FROM VentaEntity v WHERE CONCAT(p.name_product) LIKE %?1%")
-    public List<ProductoEntity> findAll(String key);
+    @Query("SELECT p FROM ProductoEntity p WHERE CONCAT(p.nombre_producto) LIKE %?1%")
+    public List<ProductoEntity> findAll(String search);
 }
