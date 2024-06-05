@@ -10,6 +10,6 @@ import com.grupo2.backend.entity.EncargadoEntity;
 
 @Repository
 public interface IEncargadoRepository extends CrudRepository<EncargadoEntity, Integer> {
-    @Query("SELECT e FROM EncargadoEntity e WHERE CONCAT(e.nombre) LIKE %?1%")
+    @Query("SELECT e FROM EncargadoEntity e WHERE CONCAT(e.nombreEncargado) LIKE %?1%")
     public List<EncargadoEntity> findAll(String search);
 }
