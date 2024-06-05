@@ -24,19 +24,19 @@ public class EncargadoEntity {
 
     @NotBlank
     @Column(name = "nombre_encargado")
-    private String nombre_encargado;
+    private String nombreEncargado;
 
     public EncargadoEntity (@JsonProperty("id") int id,
-                    @JsonProperty("nombre_encargado") String nombre_encargado){
+                    @JsonProperty("nombre_encargado") String nombreEncargado){
         super();
         this.id = id;
-        this.nombre_encargado = nombre_encargado;
+        this.nombreEncargado = nombreEncargado;
     }
 
     public EncargadoDto toDto(){
     EncargadoDto dto = new EncargadoDto();
     dto.setId(this.getId());
-    dto.setNombre_encargado(this.getNombre_encargado());
+    dto.setNombreEncargado(this.getNombreEncargado());
     return dto;
     }
 
