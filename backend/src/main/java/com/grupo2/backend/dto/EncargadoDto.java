@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class EncargadoDto {
-        private int id;
+    private int id;
 
     private String nombreEncargado;
 
