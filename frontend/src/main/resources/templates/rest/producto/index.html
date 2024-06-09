@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>Índice de Productos</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>
@@ -17,6 +19,22 @@
                     Crear Producto
                 </a>
             </div>
+            <form class="w-full max-w-md mt-6" th:action="@{/producto/listar/REST}">
+                <div class="flex justify-center space-x-4">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <input type="text" name="search" class="form-control" id="search" th:value="${search}"
+                            placeholder="Filtrar por nombre..." required>
+                    </div>
+                    <input type="submit"
+                    class="inline-flex items-center justify-center rounded-md bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-gray-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-700 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-500 dark:text-white dark:hover:bg-gray-600 dark:focus-visible:ring-gray-700"
+                    value="Filtrar">
+                    &nbsp;&nbsp;
+
+                    <input type="button"
+                    class="inline-flex items-center justify-center rounded-md bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-gray-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-700 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-500 dark:text-white dark:hover:bg-gray-600 dark:focus-visible:ring-gray-700"
+                     value="Limpiar" onclick="limpiarCampos()">
+                </div>
+            </form>
         </div>
         <div class="overflow-x-auto rounded-lg shadow-lg bg-gray-200 dark:bg-gray-800">
             <table class="w-full table-auto rounded-lg overflow-hidden">
@@ -39,7 +57,7 @@
                                     class="inline-flex items-center justify-center rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-700 disabled:pointer-events-none disabled:opacity-50 dark:bg-blue-500 dark:text-white dark:hover:bg-blue-600 dark:focus-visible:ring-blue-700">
                                     Editar
                                 </a>
-                                <button th:onclick="'fxJSeliminarProducto(\'' + ${producto.id} + '\')'"
+                                <button th:onclick="'fxJSeliminarProducto(' + ${producto.id} + ')'"
                                     class="inline-flex items-center justify-center rounded-md bg-red-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-red-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-red-700 disabled:pointer-events-none disabled:opacity-50 dark:bg-red-500 dark:text-white dark:hover:bg-red-600 dark:focus-visible:ring-red-700">
                                     Eliminar
                                 </button>
@@ -50,6 +68,11 @@
             </table>
         </div>
     </div>
+    <script type="text/javascript">
+        function limpiarCampos() {
+            window.location = '/producto/listar/REST';
+        }
+    </script>
     <script src="/fxJSfuncionesREST.js"></script>
 </body>
 
