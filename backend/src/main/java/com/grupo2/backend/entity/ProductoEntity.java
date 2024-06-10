@@ -1,14 +1,19 @@
 package com.grupo2.backend.entity;
 
 
+
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.grupo2.backend.dto.ProductoDto;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -29,6 +34,8 @@ public class ProductoEntity {
     @Column(name="nombre_producto")
     private String nombre_producto;
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "prod_prov")
+    private List<Prod_Prov> prod_prov;
 
     public ProductoEntity (@JsonProperty("id") int id,
                             @JsonProperty("nombre_producto") String nombre_producto){
