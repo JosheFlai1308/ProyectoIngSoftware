@@ -34,7 +34,7 @@ public class ProductoEntity {
     @Column(name="nombre_producto")
     private String nombre_producto;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "prod_prov")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "producto")
     private List<Prod_Prov> prod_prov;
 
     public ProductoEntity (@JsonProperty("id") int id,

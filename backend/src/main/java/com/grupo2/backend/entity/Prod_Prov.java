@@ -2,8 +2,6 @@ package com.grupo2.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.grupo2.backend.dto.Prod_ProvDto;
-import com.grupo2.backend.dto.ProductoDto;
-import com.grupo2.backend.dto.ProveedorDto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
