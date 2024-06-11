@@ -21,7 +21,6 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name = "prod_prov")
 public class Prod_Prov {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;

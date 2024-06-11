@@ -26,17 +26,30 @@ public class EncargadoEntity {
     @Column(name = "nombre_encargado")
     private String nombreEncargado;
 
+    @NotBlank
+    @Column(name = "numero_telefono")
+    private String numeroTelefono;
+
+    @NotBlank
+    @Column(name = "correo_electronico")
+    private String correoElectronico;
+
     public EncargadoEntity (@JsonProperty("id") int id,
-                    @JsonProperty("nombre_encargado") String nombreEncargado){
+                    @JsonProperty("nombre_encargado") String nombreEncargado,@JsonProperty("numero_telefono")  String numeroTelefono,
+                    @JsonProperty("correo_electronico") String correoElectronico ){
         super();
         this.id = id;
         this.nombreEncargado = nombreEncargado;
+        this.numeroTelefono = numeroTelefono;
+        this.correoElectronico = correoElectronico;
     }
 
     public EncargadoDto toDto(){
     EncargadoDto dto = new EncargadoDto();
     dto.setId(this.getId());
     dto.setNombreEncargado(this.getNombreEncargado());
+    dto.setNumeroTelefono(this.getNumeroTelefono());
+    dto.setCorreoElectronico(this.getCorreoElectronico());
     return dto;
     }
 
