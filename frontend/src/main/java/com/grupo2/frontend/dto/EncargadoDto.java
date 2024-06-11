@@ -10,4 +10,6 @@ import lombok.NoArgsConstructor;
 public class EncargadoDto {
     private int id;
     private String nombreEncargado;
+    private String numeroTelefono;
+    private String correoElectronico;
 }

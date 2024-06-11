@@ -38,9 +38,9 @@ public class ControladorEncargado {
         if (encargados != null) {
             model.addAttribute("encargados", encargados);
             model.addAttribute("search", search);
-            model.addAttribute("Message", "Se han cargado todas las encargados");
+            model.addAttribute("Message", "Se han cargado todas los encargados");
         } else {
-            model.addAttribute("errorMessage", "Ocurrio un error en listar/REST");
+            model.addAttribute("errorMessage", "Ocurrió un error en listar/REST");
         }
         return "rest/encargado/index";
     }
@@ -63,7 +63,7 @@ public class ControladorEncargado {
             return "rest/encargado/index";
         }
         if (encargado == null) {
-            model.addAttribute("errorMessage", "Ocurrio un error en editar/REST/{id}");
+            model.addAttribute("errorMessage", "Ocurrió un error en editar/REST/{id}");
         } else {
             model.addAttribute("encargado", encargado);
         }
@@ -85,7 +85,7 @@ public class ControladorEncargado {
             return "rest/encargado/index";
         }
         if (encargado == null) {
-            model.addAttribute("errorMessage", "Ocurrio un error en grabar/REST");
+            model.addAttribute("errorMessage", "Ocurrió un error en grabar/REST");
             return "rest/encargado/form";
         }
         return "redirect:/encargado/listar/REST";
@@ -97,7 +97,7 @@ public class ControladorEncargado {
         try {
             encargado = servicio.deleteREST(id);
             if (encargado == null) {
-                model.addAttribute("errorMessage", "Ocurrio un error en eliminar/REST/{id}");
+                model.addAttribute("errorMessage", "Ocurrió un error en eliminar/REST/{id}");
             } else {
                 return "redirect:/encargado/listar/REST";
             }

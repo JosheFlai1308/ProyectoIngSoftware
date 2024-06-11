@@ -5,6 +5,11 @@
     <meta charset="UTF-8">
     <title>Encargados</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <style>
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -12,11 +17,31 @@
         <div class="flex flex-col items-center mb-8">
             <div class="flex items-center justify-between w-full">
                 <h1 class="text-4xl font-bold text-gray-800 dark:text-gray-200">Índice de Encargados</h1>
-                <a th:href="@{/encargado/nuevo/REST}"
+                <button onclick="toggleForm()"
                     class="inline-flex items-center justify-center rounded-md bg-green-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-green-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-green-700 disabled:pointer-events-none disabled:opacity-50 dark:bg-green-500 dark:text-white dark:hover:bg-green-600 dark:focus-visible:ring-green-700">
                     Crear Encargado
-                </a>
+                </button>
             </div>
+        </div>
+        <div id="form-container" class="
+        hidden overflow-x-auto rounded-lg shadow-lg bg-gray-200 dark:bg-gray-800 mb-8 p-4">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-4">Añadir Nuevo Encargado</h2>
+            <form th:action="@{/encargado/grabar/REST}" th:object="${encargado}" method="POST" class="grid gap-4">
+                <input id="id" th:field="*{id}" type="hidden" />
+                
+                <label for="nombreEncargado" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nombre del Encargado</label>
+                <input th:field="*{nombreEncargado}" id="nombreEncargado" type="text" name="nombreEncargado" placeholder="Ingrese el nombre del encargado" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300" required/>
+                
+                <label for="numeroTelefono" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Número de Teléfono</label>
+                <input th:field="*{numeroTelefono}" id="numeroTelefono" type="text" name="numeroTelefono" placeholder="Ingrese el número de teléfono" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300" required/>
+                
+                <label for="correoElectronico" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Correo Electrónico</label>
+                <input th:field="*{correoElectronico}" id="correoElectronico" type="email" name="correoElectronico" placeholder="Ingrese el correo electrónico" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300" required/>
+                
+                <button type="submit" class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                    Aceptar
+                </button>
+            </form>
         </div>
         <div class="overflow-x-auto rounded-lg shadow-lg bg-gray-200 dark:bg-gray-800">
             <table class="w-full table-auto rounded-lg overflow-hidden">
@@ -33,8 +58,9 @@
                     <tr th:each="encargado : ${encargados}"
                         class="border-b border-gray-400 dark:border-gray-600 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors">
                         <td class="px-4 py-3 text-gray-600 dark:text-gray-400" th:text="${encargado.id}"></td>
-                        <td class="px-4 py-3 text-center text-gray-600 dark:text-gray-400"
-                            th:text="${encargado.nombreEncargado}"></td>
+                        <td class="px-4 py-3 text-center text-gray-600 dark:text-gray-400" th:text="${encargado.nombreEncargado}"></td>
+                        <td class="px-4 py-3 text-center text-gray-600 dark:text-gray-400" th:text="${encargado.numeroTelefono}"></td>
+                        <td class="px-4 py-3 text-center text-gray-600 dark:text-gray-400" th:text="${encargado.correoElectronico}"></td>
                         <td class="px-4 py-3 text-gray-600 dark:text-gray-400">
                             <div class="flex space-x-2">
                                 <a th:href="@{/encargado/editar/REST/}+${encargado.id}"
