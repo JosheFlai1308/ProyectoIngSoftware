@@ -22,4 +22,14 @@ public class ProveedorDto {
         e.setCategoria(this.getCategoria());
         return e;
     }
+
+    public ProveedorDto(ProveedorEntity proveedor) {
+        this.id = proveedor.getId();
+        this.nombre_proveedor = proveedor.getNombre_proveedor();
+        this.categoria = proveedor.getCategoria();
+    }
+
+    public static ProveedorDto fromEntity(ProveedorEntity proveedor) {
+        return new ProveedorDto(proveedor);
+    }
 }
