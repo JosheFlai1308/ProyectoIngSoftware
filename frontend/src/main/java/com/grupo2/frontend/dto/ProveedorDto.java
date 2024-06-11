@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductoDto {
+public class ProveedorDto {
     private int id;
-    private String nombre_producto;
+    private String nombre_proveedor;
+    private String categoria;
 }
