@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.grupo2.frontend.dto.EncargadoDto;
+import com.grupo2.frontend.dto.ProductoDto;
 import com.grupo2.frontend.service.ICrudServiceEncargado;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -51,6 +52,7 @@ public class ControladorEncargado {
         return "rest/encargado/form";
     }
 
+
     @GetMapping("editar/REST/{id}")
     public String editarREST(@PathVariable int id, Model model) {
         EncargadoDto encargado = null;
@@ -72,23 +74,38 @@ public class ControladorEncargado {
 
     @PostMapping("grabar/REST")
     public String saveREST(@Valid EncargadoDto p, Model model) {
-        EncargadoDto encargado = null;
-        try {
-            if (p.getId() == 0) {
-                encargado = servicio.saveREST(p);
-            } else {
-                encargado = servicio.editarREST(p);
-            }
-        } catch (Exception e) {
-            model.addAttribute("errorMessage", e.getMessage());
-            e.printStackTrace();
-            return "rest/encargado/index";
-        }
-        if (encargado == null) {
-            model.addAttribute("errorMessage", "Ocurrió un error en grabar/REST");
-            return "rest/encargado/form";
-        }
-        return "redirect:/encargado/listar/REST";
+    	EncargadoDto encargado = null;
+    	if (p.getId()==0) {
+    		try {
+    			encargado = servicio.saveREST(p);
+			}
+			catch (Exception e) {
+				model.addAttribute("errorMessage", e.getMessage());
+				e.printStackTrace();
+				return "rest/encargado/index";
+			}
+			if (encargado==null)
+			{
+				model.addAttribute("errorMessage", "Ocurrio un error en grabar/REST SAVE");
+				return "rest/encargado/form";
+			}	
+    	}else
+		{
+			try {
+				encargado = servicio.editarREST(p);
+			}
+			catch (Exception e)
+			{
+				model.addAttribute("errorMessage", e.getMessage());
+				e.printStackTrace();
+				return "rest/encargado/index";
+			}
+			if (encargado==null)
+			{
+				model.addAttribute("errorMessage", "Ocurrio un error en grabar/REST EDITAR");
+			}	
+		}
+		return "redirect:/encargado/listar/REST";
     }
 
     @GetMapping("eliminar/REST/{id}")
@@ -108,4 +125,6 @@ public class ControladorEncargado {
         }
         return "redirect:/encargado/listar/REST";
     }
+    
+    
 }

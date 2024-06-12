@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class EncargadoDto {
     private int id;
-    private String nombreEncargado;
-    private String numeroTelefono;
-    private String correoElectronico;
+    private String nombre_encargado;
+    private String numero_telefono;
+    private String correo_electronico;
 }

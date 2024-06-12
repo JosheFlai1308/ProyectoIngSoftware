@@ -24,32 +24,32 @@ public class EncargadoEntity {
 
     @NotBlank
     @Column(name = "nombre_encargado")
-    private String nombreEncargado;
+    private String nombre_encargado;
 
     @NotBlank
     @Column(name = "numero_telefono")
-    private String numeroTelefono;
+    private String numero_telefono;
 
     @NotBlank
     @Column(name = "correo_electronico")
-    private String correoElectronico;
+    private String correo_electronico;
 
     public EncargadoEntity (@JsonProperty("id") int id,
-                    @JsonProperty("nombre_encargado") String nombreEncargado,@JsonProperty("numero_telefono")  String numeroTelefono,
-                    @JsonProperty("correo_electronico") String correoElectronico ){
+                    @JsonProperty("nombre_encargado") String nombre_encargado,@JsonProperty("numero_telefono")  String numero_telefono,
+                    @JsonProperty("correo_electronico") String correo_electronico ){
         super();
         this.id = id;
-        this.nombreEncargado = nombreEncargado;
-        this.numeroTelefono = numeroTelefono;
-        this.correoElectronico = correoElectronico;
+        this.nombre_encargado = nombre_encargado;
+        this.numero_telefono = numero_telefono;
+        this.correo_electronico = correo_electronico;
     }
 
     public EncargadoDto toDto(){
     EncargadoDto dto = new EncargadoDto();
     dto.setId(this.getId());
-    dto.setNombreEncargado(this.getNombreEncargado());
-    dto.setNumeroTelefono(this.getNumeroTelefono());
-    dto.setCorreoElectronico(this.getCorreoElectronico());
+    dto.setNombre_encargado(this.getNombre_encargado());
+    dto.setNumero_telefono(this.getNumero_telefono());
+    dto.setCorreo_electronico(this.getCorreo_electronico());
     return dto;
     }
 

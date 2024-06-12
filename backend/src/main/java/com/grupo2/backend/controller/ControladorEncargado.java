@@ -65,7 +65,7 @@ public class ControladorEncargado {
         if (oDto.isPresent()) {
             return new ResponseEntity<>(servicio.save(dto), HttpStatus.OK);
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<EncargadoDto>(HttpStatus.NO_CONTENT);
     }
 
     @PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
@@ -77,7 +77,7 @@ public class ControladorEncargado {
             servicio.delete(dto);
             return new ResponseEntity<>(dto, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<EncargadoDto>(HttpStatus.NO_CONTENT);
         }
     }
 }
