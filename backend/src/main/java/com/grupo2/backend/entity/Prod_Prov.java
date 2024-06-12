@@ -2,6 +2,8 @@ package com.grupo2.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.grupo2.backend.dto.Prod_ProvDto;
+import com.grupo2.backend.dto.ProductoDto;
+import com.grupo2.backend.dto.ProveedorDto;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -46,7 +48,19 @@ public class Prod_Prov {
     }
 
     public Prod_ProvDto toDto() {
-        return Prod_ProvDto.fromEntity(this);
+        Prod_ProvDto dto = new Prod_ProvDto();
+        dto.setId(this.getId());
+        dto.setPrecio(this.getPrecio());
+        ProductoDto prod = new ProductoDto();
+        prod.setId(this.getProducto().getId());
+        prod.setNombre_producto(this.getProducto().getNombre_producto());
+        dto.setProducto(prod);
+        ProveedorDto prov = new ProveedorDto();
+        prov.setId(this.getProveedor().getId());
+        prov.setNombre_proveedor(this.getProveedor().getNombre_proveedor());
+        prov.setCategoria(this.getProveedor().getCategoria());
+        dto.setProveedor(prov);
+        return dto;
     }
 
 

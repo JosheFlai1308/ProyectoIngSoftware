@@ -134,4 +134,40 @@ public class ControladorProducto {
         return "redirect:/producto/listar/REST";
     }
     
-}
+
+
+//REST
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////77
+//FX
+
+	public List<ProductoDto> getAll (Model model){
+		try {
+			List<ProductoDto> productos = servicio.findAllREST(null);
+			model.addAttribute("null", productos);
+			return productos;
+
+		} catch(Exception e){
+			model.addAttribute("errorMessage", e.getMessage());
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public ProductoDto found(String idp){
+		StringBuilder nros = new StringBuilder();
+		for (char l:idp.toCharArray()){
+			if (Character.isDigit(l)){
+				nros.append(l);
+			}
+		}
+		int id = Integer.parseInt(nros.toString());
+		try {
+			Optional<ProductoDto> dto = servicio.findByIdREST(id);
+			return dto.get();
+		}catch (Exception e){
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+} 

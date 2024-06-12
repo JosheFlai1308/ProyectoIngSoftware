@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Índice de prod_provs</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+
+<body>
+    <div class="container mx-auto px-4 md:px-6 py-12">
+        <div class="flex flex-col items-center mb-8">
+            <div class="flex items-center justify-between w-full">
+                <h1 class="text-4xl font-bold text-gray-800 dark:text-gray-200">Índice de prod_provs</h1>
+                <a th:href="@{nuevo/REST}"
+                    class="inline-flex items-center justify-center rounded-md bg-green-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-green-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-green-700 disabled:pointer-events-none disabled:opacity-50 dark:bg-green-500 dark:text-white dark:hover:bg-green-600 dark:focus-visible:ring-green-700">
+                    Crear prod_prov
+                </a>
+            </div>
+            <form class="w-full max-w-md mt-6" th:action="@{/prod_prov/listar/REST}">
+                <div class="flex justify-center space-x-4">
+                    <div class="form-group mx-sm-3 mb-2">
+                        <input type="text" name="search" class="form-control" id="search" th:value="${search}"
+                            placeholder="Filtrar por nombre..." required>
+                    </div>
+                    <input type="submit"
+                    class="inline-flex items-center justify-center rounded-md bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-gray-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-700 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-500 dark:text-white dark:hover:bg-gray-600 dark:focus-visible:ring-gray-700"
+                    value="Filtrar">
+                    &nbsp;&nbsp;
+
+                    <input type="button"
+                    class="inline-flex items-center justify-center rounded-md bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-gray-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-700 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-500 dark:text-white dark:hover:bg-gray-600 dark:focus-visible:ring-gray-700"
+                     value="Limpiar" onclick="limpiarCampos()">
+                </div>
+            </form>
+        </div>
+        <div class="overflow-x-auto rounded-lg shadow-lg bg-gray-200 dark:bg-gray-800">
+            <table class="w-full table-auto rounded-lg overflow-hidden">
+                <thead>
+                    <tr class="bg-gray-300 dark:bg-gray-700">
+                        <th class="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-400">ID</th>
+                        <th class="px-4 py-3 text-center font-medium text-gray-600 dark:text-gray-400">Precio</th>
+                        <th class="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-400">Producto</th>
+                        <th class="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-400">Proveedor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="prod_prov : ${prod_provs}"
+                        class="border-b border-gray-400 dark:border-gray-600 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors">
+                        <td class="px-4 py-3 text-gray-600 dark:text-gray-400" th:text="${prod_prov.id}"></td>
+                        <td class="px-4 py-3 text-center text-gray-600 dark:text-gray-400"
+                            th:text="${prod_prov.precio}"></td>
+                        <td class="px-4 py-3 text-center text-gray-600 dark:text-gray-400"
+                            th:text="${prod_prov.producto.nombre_producto}"></td>
+                        <td class="px-4 py-3 text-center text-gray-600 dark:text-gray-400"
+                            th:text="${prod_prov.proveedor.nombre_proveedor}"></td>
+                        <td class="px-4 py-3 text-gray-600 dark:text-gray-400">
+                            <div class="flex space-x-2">
+                                <a th:href="@{/prod_prov/editar/REST/}+${prod_prov.id}"
+                                    class="inline-flex items-center justify-center rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-700 disabled:pointer-events-none disabled:opacity-50 dark:bg-blue-500 dark:text-white dark:hover:bg-blue-600 dark:focus-visible:ring-blue-700">
+                                    Editar
+                                </a>
+                                <button th:onclick="'fxJSeliminarProd_Prov(' + ${prod_prov.id} + ')'"
+                                    class="inline-flex items-center justify-center rounded-md bg-red-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-red-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-red-700 disabled:pointer-events-none disabled:opacity-50 dark:bg-red-500 dark:text-white dark:hover:bg-red-600 dark:focus-visible:ring-red-700">
+                                    Eliminar
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function limpiarCampos() {
+            window.location = '/prod_prov/listar/REST';
+        }
+    </script>
+    <script src="/fxJSfuncionesREST.js"></script>
+</body>
+
+</html>
