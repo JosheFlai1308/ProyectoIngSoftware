@@ -6,7 +6,7 @@ import java.util.Optional;
 import com.grupo2.frontend.dto.EncargadoDto;
 
 public interface ICrudServiceEncargado {
-    	public List<EncargadoDto> findAllREST(String search) throws Exception;
+    public List<EncargadoDto> findAllREST(String search) throws Exception;
 
 	public Optional<EncargadoDto> findByIdREST(int id) throws Exception;
 
