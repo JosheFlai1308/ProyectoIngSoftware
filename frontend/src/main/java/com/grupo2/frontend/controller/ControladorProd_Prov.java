@@ -1,12 +1,5 @@
 package com.grupo2.frontend.controller;
 
-import com.grupo2.frontend.dto.Prod_ProvDto;
-import com.grupo2.frontend.dto.ProductoDto;
-import com.grupo2.frontend.dto.ProveedorDto;
-import com.grupo2.frontend.service.ICrudServiceProd_Prov;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.validation.Valid;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +11,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.grupo2.frontend.dto.Prod_ProvDto;
+import com.grupo2.frontend.dto.ProductoDto;
+import com.grupo2.frontend.dto.ProveedorDto;
+import com.grupo2.frontend.service.ICrudServiceProd_Prov;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("prod_prov")
@@ -104,8 +105,6 @@ public class ControladorProd_Prov {
         model.addAttribute("proveedores", controller_proveedor.getAll(model));
 		ProductoDto producto = controller_producto.found(p.getId_producto());
 		ProveedorDto proveedor = controller_proveedor.found(p.getId_proveedor());
-		System.out.println(producto);
-		System.out.println(proveedor);
     	if (p.getId()==0) {
     		try {
 				p.setProducto(producto);

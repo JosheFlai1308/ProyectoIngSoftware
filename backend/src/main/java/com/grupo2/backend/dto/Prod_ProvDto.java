@@ -18,19 +18,27 @@ public class Prod_ProvDto {
     private ProductoDto producto;
     private ProveedorDto proveedor;
 
-    public Prod_Prov toEntity() {
-        Prod_Prov e = new Prod_Prov();
-        e.setId(this.getId());
-        e.setPrecio(this.getPrecio());
+    public ProductoEntity loadProductoEntity(){
         ProductoEntity prod = new ProductoEntity();
         prod.setId(this.getProducto().getId());
         prod.setNombre_producto(this.getProducto().getNombre_producto());
-        e.setProducto(prod);
+        return prod;
+    }
+    
+    public ProveedorEntity loadProveedorEntity(){
         ProveedorEntity prov = new ProveedorEntity();
         prov.setId(this.getProveedor().getId());
         prov.setNombre_proveedor(this.getProveedor().getNombre_proveedor());
         prov.setCategoria(this.getProveedor().getCategoria());
-        e.setProveedor(prov);
+        return prov;
+    }
+
+    public Prod_Prov toEntity() {
+        Prod_Prov e = new Prod_Prov();
+        e.setId(this.getId());
+        e.setPrecio(this.getPrecio());
+        e.setProducto(this.loadProductoEntity());
+        e.setProveedor(this.loadProveedorEntity());
         return e;
     }
 }

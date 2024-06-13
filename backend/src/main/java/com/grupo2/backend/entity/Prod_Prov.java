@@ -47,19 +47,27 @@ public class Prod_Prov {
         this.proveedor = proveedor;
     }
 
-    public Prod_ProvDto toDto() {
-        Prod_ProvDto dto = new Prod_ProvDto();
-        dto.setId(this.getId());
-        dto.setPrecio(this.getPrecio());
+    public ProductoDto loadProductoDto(){
         ProductoDto prod = new ProductoDto();
         prod.setId(this.getProducto().getId());
         prod.setNombre_producto(this.getProducto().getNombre_producto());
-        dto.setProducto(prod);
+        return prod;
+    }
+
+    public ProveedorDto loadProveedorDto(){
         ProveedorDto prov = new ProveedorDto();
         prov.setId(this.getProveedor().getId());
         prov.setNombre_proveedor(this.getProveedor().getNombre_proveedor());
         prov.setCategoria(this.getProveedor().getCategoria());
-        dto.setProveedor(prov);
+        return prov;
+    }
+    
+    public Prod_ProvDto toDto() {
+        Prod_ProvDto dto = new Prod_ProvDto();
+        dto.setId(this.getId());
+        dto.setPrecio(this.getPrecio());
+        dto.setProducto(this.loadProductoDto());
+        dto.setProveedor(this.loadProveedorDto());
         return dto;
     }
 
