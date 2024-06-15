@@ -78,6 +78,6 @@ public class ControladorProd_Prov {
 			servicio.delete(oDto.get());
 			return new ResponseEntity<>(dto, HttpStatus.OK);
 		} else
-			return new ResponseEntity< Prod_ProvDto>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<Prod_ProvDto>(HttpStatus.NO_CONTENT);
 	}
 }

@@ -114,7 +114,8 @@ function fxJSEliminarEncargado(id) {
     });
 }
 
-function fxJSEliminarGuia_Despacho(id) {
+
+function fxJSeliminarGuia_Despacho(id) {
     swal({
         title: "¿Está seguro de que desea eliminar los datos seleccionados?",
         text: "Una vez eliminados, no podrán ser restaurados",
@@ -125,15 +126,15 @@ function fxJSEliminarGuia_Despacho(id) {
     .then((OK) => {
         if (OK) {
             $.ajax({
-                url: "/guia_despacho/eliminar/REST/" + id,
-                success: function (res) {
+                url: "/guia_despacho/eliminar/REST/"+id,
+                success:function (res) {
                     console.log(res);
                 },
             });
             swal("Datos eliminados exitosamente", {
                 icon: "success",
             }).then((ok) => {
-                if (ok) {
+                if (ok){
                     location.href = "/guia_despacho/listar/REST";
                 }
             });
