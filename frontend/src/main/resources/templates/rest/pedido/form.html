@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Añadir Nuevo Pedido</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+<body>
+  <div class="container mx-auto px-4 md:px-6 py-12">
+    <div class="flex justify-center">
+      <div class="w-full max-w-md bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
+        <div class="mb-4">
+          <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200">Añadir Nuevo Pedido</h2>
+          <p class="text-gray-600 dark:text-gray-400">Complete el formulario a continuación para crear un nuevo pedido.</p>
+        </div>
+        <div>
+          <form th:action="@{/pedido/grabar/REST}" th:object="${pedido}" method="POST" class="grid gap-4">
+            <div class="grid gap-2">
+              <input id="id_pedido" th:field="*{id_pedido}" type="hidden" />
+              <label for="nombre_pedido" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nombre del Pedido</label>
+              <input th:field="*{nota_conformidad}" id="nota_conformidad" type="text" name="nota_conformidad" placeholder="Ingrese la nota de conformidad" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300" required/>
+
+              <label for="total" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Total</label>
+              <input th:field="*{total}" id="total" type="number" name="total" placeholder="Ingrese el total" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300" required/>
+
+              <label for="fecha_emitido" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Fecha Emitido</label>
+              <input th:field="*{fecha_emitido}" id="fecha_emitido" type="date" name="fecha_emitido" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300" required/>
+
+              <label for="fecha_entrega" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Fecha Entrega</label>
+              <input th:field="*{fecha_entrega}" id="fecha_entrega" type="date" name="fecha_entrega" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300" required/>
+
+              <label for="estado" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Estado</label>
+              <input th:field="*{estado}" id="estado" type="text" name="estado" placeholder="Ingrese el estado" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300" required/>
+
+            </div>
+            <button type="submit" class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+              Aceptar
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
