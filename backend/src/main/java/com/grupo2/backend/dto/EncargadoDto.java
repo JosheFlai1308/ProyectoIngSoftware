@@ -1,7 +1,6 @@
 package com.grupo2.backend.dto;
 
 import com.grupo2.backend.entity.EncargadoEntity;
-import com.grupo2.backend.entity.ProductoEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
