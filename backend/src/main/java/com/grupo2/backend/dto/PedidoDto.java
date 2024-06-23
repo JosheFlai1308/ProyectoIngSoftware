@@ -1,5 +1,7 @@
 package com.grupo2.backend.dto;
 
+import java.sql.Date;
+
 import com.grupo2.backend.entity.PedidoEntity;
 
 import lombok.AllArgsConstructor;
@@ -14,8 +16,8 @@ public class PedidoDto {
     private int id_pedido;
     private int total;
     private String nota_conformidad;
-    private String fecha_emitido;
-    private String fecha_entrega;
+    private Date fecha_emitido;
+    private Date fecha_entrega;
     private String estado;
 
     // Constructor que convierte desde la entidad a DTO

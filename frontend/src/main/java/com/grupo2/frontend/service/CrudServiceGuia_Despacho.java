@@ -95,19 +95,22 @@ public class CrudServiceGuia_Despacho implements ICrudServiceGuia_Despacho{
 	@Override
 	public Guia_DespachoDto saveREST(Guia_DespachoDto p) throws Exception {
 		Guia_DespachoDto dto = null;
-	
-		ResponseEntity<Guia_DespachoDto> responseEntity = new RestTemplate().exchange(
-				"http://localhost:8080/guia_despacho/REST",
-				HttpMethod.POST, new HttpEntity<>(p, httpHeaders()), Guia_DespachoDto.class);
-	
-		if (responseEntity.getStatusCode().is2xxSuccessful() && responseEntity.hasBody()) {
-			dto = responseEntity.getBody();
+
+		ResponseEntity<Guia_DespachoDto> responseEntity = new RestTemplate().exchange("http://localhost:8080/guia_despacho/REST",
+				HttpMethod.POST, new HttpEntity<>(p, httpHeaders()), new ParameterizedTypeReference<Guia_DespachoDto>() {
+				});
+
+		if (responseEntity.getStatusCode().is2xxSuccessful()) {
+			if (responseEntity.hasBody()) {
+				dto = responseEntity.getBody();
+			}
 		} else {
-			throw new Exception(this.getClass().getCanonicalName() + " FrontEnd Service method:saveREST Error API Rest");
+			throw new Exception(
+					this.getClass().getCanonicalName() + " FrontEdnd Service method:saveREST Error API Rest");
 		}
 		return dto;
+
 	}
-	
 
 	@Override
 	public Guia_DespachoDto deleteREST(int id) throws Exception {

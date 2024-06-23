@@ -1,7 +1,7 @@
 package com.grupo2.backend.entity;
 
 import java.util.List;
-
+import java.sql.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.grupo2.backend.dto.PedidoDto;
 
@@ -34,10 +34,10 @@ public class PedidoEntity {
     private String nota_conformidad;
 
     @Column(name = "fecha_emitido")
-    private String fecha_emitido;
+    private Date fecha_emitido;
 
     @Column(name = "fecha_entrega")
-    private String fecha_entrega;
+    private Date fecha_entrega;
 
     @Column(name = "estado")
     private String estado;
@@ -48,8 +48,8 @@ public class PedidoEntity {
     public PedidoEntity(@JsonProperty("id_pedido") int id_pedido,
             @JsonProperty("total") int total, 
             @JsonProperty("nota_conformidad") String nota_conformidad, 
-            @JsonProperty("fecha_emitido") String fecha_emitido, 
-            @JsonProperty("fecha_entrega") String fecha_entrega, 
+            @JsonProperty("fecha_emitido") Date fecha_emitido, 
+            @JsonProperty("fecha_entrega") Date fecha_entrega, 
             @JsonProperty("estado") String estado){
         super();
         this.id_pedido = id_pedido;
