@@ -12,7 +12,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -26,11 +25,11 @@ public class Guia_DespachoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotNull
+    @NotBlank
     @Column(name = "cantidad_recibida")
     private int cantidad_recibida;
 
-    @NotNull
+    @NotBlank
     @Column(name = "fecha")
     private LocalDate fecha;
 
@@ -42,7 +41,11 @@ public class Guia_DespachoEntity {
     }
 
     public Guia_DespachoDto toDto(){
-        return new Guia_DespachoDto(this.getId(), this.getCantidad_recibida(), this.getFecha());
+        Guia_DespachoDto dto = new Guia_DespachoDto();
+    dto.setId(this.getId());
+    dto.setCantidad_recibida(this.getCantidad_recibida());
+    dto.setFecha(this.getFecha());
+    return dto;
     }
 
 }

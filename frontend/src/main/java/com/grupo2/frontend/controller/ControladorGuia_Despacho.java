@@ -69,33 +69,32 @@ public class ControladorGuia_Despacho {
     }
 
     @PostMapping("grabar/REST")
-public String saveREST(@Valid Guia_DespachoDto p, BindingResult bindingResult, Model model) {
-    if (bindingResult.hasErrors()) {
-        model.addAttribute("errorMessage", "Error en los datos ingresados");
-        return "rest/guia_despacho/form";
-    }
-
-    Guia_DespachoDto guia;
-    try {
-        if (p.getId() == 0) {
-            guia = servicio.saveREST(p);
-        } else {
-            guia = servicio.editarREST(p);
+    public String saveREST(@Valid Guia_DespachoDto p, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("errorMessage", "Error en los datos ingresados");
+            return "rest/guia_despacho/form";
         }
-    } catch (Exception e) {
-        model.addAttribute("errorMessage", e.getMessage());
-        e.printStackTrace();
-        return "rest/guia_despacho/index";
+
+        Guia_DespachoDto guia;
+        try {
+            if (p.getId() == 0) {
+                guia = servicio.saveREST(p);
+            } else {
+                guia = servicio.editarREST(p);
+            }
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", e.getMessage());
+            e.printStackTrace();
+            return "rest/guia_despacho/index";
+        }
+
+        if (guia == null) {
+            model.addAttribute("errorMessage", "Ocurrió un error al guardar/actualizar la guía de despacho");
+            return "rest/guia_despacho/form";
+        }
+
+        return "redirect:/guia_despacho/listar/REST";
     }
-
-    if (guia == null) {
-        model.addAttribute("errorMessage", "Ocurrió un error al guardar/actualizar la guía de despacho");
-        return "rest/guia_despacho/form";
-    }
-
-    return "redirect:/guia_despacho/listar/REST";
-}
-
 
     @GetMapping("eliminar/REST/{id}")
     public String deleteREST(@PathVariable int id, Model model) {

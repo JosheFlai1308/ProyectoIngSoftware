@@ -18,19 +18,23 @@ public class CrudServicePedido implements ICrudServicePedido {
     private IPedidoRepository data;
 
     @Override
-    public List<PedidoDto> findAll(String search) {
-        List<PedidoEntity> listE;
-        if (search != null) {
-            listE = data.findAll(search);
-        } else {
-            listE = data.findAll();
-        }
-        List<PedidoDto> listDto = new ArrayList<>();
-        for (PedidoEntity e : listE) {
-            listDto.add(e.toDto());
-        }
-        return listDto;
-    }
+   public List<PedidoDto> findAll(String search) {
+		if (search != null) {
+			List<PedidoEntity> listE = (List<PedidoEntity>) data.findAll(search);
+			List<PedidoDto> listDto = new ArrayList<>();
+			for (PedidoEntity e : listE) {
+				listDto.add(e.toDto());
+			}
+			return listDto;
+		}
+
+		List<PedidoEntity> listE = (List<PedidoEntity>) data.findAll();
+		List<PedidoDto> listDto = new ArrayList<>();
+		for (PedidoEntity e : listE) {
+			listDto.add(e.toDto());
+		}
+		return listDto;
+	}
 
     @Override
     public Optional<PedidoDto> findById(int id) {
