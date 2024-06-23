@@ -2,6 +2,8 @@ package com.grupo2.backend.dto;
 
 import java.sql.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.grupo2.backend.entity.PedidoEntity;
 
 import lombok.AllArgsConstructor;
@@ -16,11 +18,16 @@ public class PedidoDto {
     private int id_pedido;
     private int total;
     private String nota_conformidad;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha_emitido;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha_entrega;
+
     private String estado;
 
-    // Constructor que convierte desde la entidad a DTO
+    // Constructor that converts from entity to DTO
     public PedidoDto(PedidoEntity pedido) {
         this.id_pedido = pedido.getId_pedido();
         this.total = pedido.getTotal();
@@ -30,7 +37,7 @@ public class PedidoDto {
         this.estado = pedido.getEstado();
     }
 
-    // Método para convertir DTO a entidad
+    // Method to convert DTO to entity
     public PedidoEntity toEntity() {
         PedidoEntity e = new PedidoEntity();
         e.setId_pedido(this.getId_pedido());
@@ -42,7 +49,7 @@ public class PedidoDto {
         return e;
     }
 
-    // Método estático para convertir desde la entidad a DTO
+    // Static method to convert from entity to DTO
     public static PedidoDto fromEntity(PedidoEntity pedido) {
         return new PedidoDto(pedido);
     }
