@@ -10,6 +10,6 @@ import com.grupo2.backend.entity.Guia_DespachoEntity;
 
 @Repository
 public interface IGuia_DespachoRepository extends CrudRepository<Guia_DespachoEntity, Integer> {
-    @Query("SELECT e FROM Guia_DespachoEntity e WHERE CONCAT(e.fecha) LIKE %?1%")
+    @Query("SELECT e FROM Guia_DespachoEntity e WHERE CONCAT(e.id) LIKE %?1%")
     public List<Guia_DespachoEntity> findAll(String search);
 }

@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -37,6 +39,10 @@ public class EncargadoEntity {
     @NotBlank
     @Column(name = "password")
     private String password;
+
+    @ManyToOne
+    @JoinColumn(name = "guia_despacho_id")
+    private Guia_DespachoEntity guia_despacho;
 
     public EncargadoEntity (@JsonProperty("id") int id,
                     @JsonProperty("nombre_encargado") String nombre_encargado,@JsonProperty("numero_telefono")  String numero_telefono,

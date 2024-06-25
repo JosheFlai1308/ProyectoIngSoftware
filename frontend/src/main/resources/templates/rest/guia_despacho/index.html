@@ -7,6 +7,85 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+        body {
+            background-image: url('https://images.pexels.com/photos/443446/pexels-photo-443446.jpeg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-auto {
+            border-collapse: collapse;
+            width: 100%;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .table-auto th,
+        .table-auto td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .table-auto th {
+            background-color: #f2f2f2;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .table-auto tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .table-auto tr:hover {
+            background-color: #ddd;
+        }
+
+        .btn-primary {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+
+        .btn-danger {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .btn-danger:hover {
+            background-color: #da190b;
+        }
+    </style>
 </head>
 
 <body>
@@ -51,7 +130,8 @@
                     <tr th:each="guia : ${guias}"
                         class="border-b border-gray-400 dark:border-gray-600 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors">
                         <td class="px-4 py-3 text-gray-600 dark:text-gray-400" th:text="${guia.id}"></td>
-                        <td class="px-4 py-3 text-gray-600 dark:text-gray-400" th:text="${guia.cantidad_recibida}"></td>
+                        <td class="px-4 py-3 text-gray-600 dark:text-gray-400"
+                            th:text="${guia.cantidad_recibida}"></td>
                         <td class="px-4 py-3 text-gray-600 dark:text-gray-400" th:text="${guia.fecha}"></td>
                         <td class="px-4 py-3">
                             <!-- Enlaces para editar y eliminar -->
@@ -60,9 +140,9 @@
                                 Editar
                             </a>
                             <button th:onclick="'fxJSEliminarGuia_Despacho(' + ${guia.id} + ')'"
-                            class="inline-flex items-center justify-center rounded-md bg-red-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-red-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-red-700 disabled:pointer-events-none disabled:opacity-50 dark:bg-red-500 dark:text-white dark:hover:bg-red-600 dark:focus-visible:ring-red-700">
-                            Eliminar
-                        </button>
+                                class="inline-flex items-center justify-center rounded-md bg-red-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-red-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-red-700 disabled:pointer-events-none disabled:opacity-50 dark:bg-red-500 dark:text-white dark:hover:bg-red-600 dark:focus-visible:ring-red-700">
+                                Eliminar
+                            </button>
                         </td>
                     </tr>
                 </tbody>
