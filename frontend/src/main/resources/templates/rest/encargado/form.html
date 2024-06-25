@@ -15,14 +15,19 @@
         </div>
         <div>
           <form th:action="@{/encargado/grabar/REST}" th:object="${encargado}" method="POST" class="grid gap-4">
+            <input id="id" th:field="*{id}" type="hidden" />
             <div class="grid gap-2">
-              <input id="id" th:field="*{id}" type="hidden" />
               <label for="nombre_encargado" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Nombre del Encargado</label>
               <input th:field="*{nombre_encargado}" id="nombre_encargado" type="text" name="nombre_encargado" placeholder="Ingrese el nombre del encargado" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300" required/>
+              
               <label for="numero_telefono" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Número de Teléfono</label>
               <input th:field="*{numero_telefono}" id="numero_telefono" type="text" name="numero_telefono" placeholder="Ingrese el número de teléfono" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300" required/>
+              
               <label for="correo_electronico" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Correo Electrónico</label>
               <input th:field="*{correo_electronico}" id="correo_electronico" type="email" name="correo_electronico" placeholder="Ingrese el correo electrónico" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300" required/>
+              
+              <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Contraseña</label>
+              <input th:field="*{password}" id="password" type="password" name="password" placeholder="Ingrese la contraseña" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300" required/>
             </div>
             <button type="submit" class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
               Aceptar

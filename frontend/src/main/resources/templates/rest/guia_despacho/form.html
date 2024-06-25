@@ -4,25 +4,38 @@
     <meta charset="UTF-8">
     <title>Añadir Nueva Guía de Despacho</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-ozK0P+Ume+hfswYnFyL4GHF0t1mE0Gyx4h9bkC+mzDe/YmdZ/U5eaKbrGjjw2+bIkMyOgXx32z6jE8kDAk64UA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .background-image {
+            background-image: url('https://images.unsplash.com/photo-1593642634367-d91a135587b5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
 </head>
-<body>
+<body class="background-image">
     <div class="container mx-auto px-4 md:px-6 py-12">
         <div class="flex justify-center">
-            <div class="w-full max-w-md bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-                <div class="mb-4">
-                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200">Añadir Nueva Guía de Despacho</h2>
+            <div class="w-full max-w-md bg-white bg-opacity-90 dark:bg-gray-800 dark:bg-opacity-90 rounded-lg shadow-md p-6">
+                <div class="mb-4 text-center">
+                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-2">Añadir Nueva Guía de Despacho</h2>
                     <p class="text-gray-600 dark:text-gray-400">Complete el formulario a continuación para crear una nueva guía de despacho.</p>
                 </div>
                 <div>
-                    <form th:action="@{/guia_despacho/grabar/REST}" th:object="${guia}" method="POST" class="grid gap-4">
+                    <form th:action="@{/guia_despacho/grabar/REST}" th:object="${guia}" method="POST" class="grid gap-6">
                         <input type="hidden" th:field="*{id}" />
-                        <label for="cantidad_recibida">Cantidad Recibida</label>
-                        <input type="number" th:field="*{cantidad_recibida}" placeholder="Ingrese la cantidad recibida" required/>
-                        <label for="fecha">Fecha</label>
-                        <input type="date" th:field="*{fecha}" placeholder="Ingrese la fecha" required/>
-                        <button type="submit">Aceptar</button>
+                        <div class="grid gap-4">
+                            <label for="cantidad_recibida" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Cantidad Recibida <i class="fas fa-box ml-2"></i></label>
+                            <input type="number" th:field="*{cantidad_recibida}" id="cantidad_recibida" placeholder="Ingrese la cantidad recibida" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300" required/>
+                        </div>
+                        <div class="grid gap-4">
+                            <label for="fecha" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Fecha <i class="fas fa-calendar-alt ml-2"></i></label>
+                            <input type="date" th:field="*{fecha}" id="fecha" placeholder="Ingrese la fecha" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300" required/>
+                        </div>
+                        <button type="submit" class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 hover:from-green-500 hover:via-blue-600 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            <i class="fas fa-check mr-2"></i> Aceptar
+                        </button>
                     </form>
-                    
                 </div>
             </div>
         </div>

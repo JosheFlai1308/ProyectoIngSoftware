@@ -41,6 +41,7 @@
                         <th class="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-400">Nombre Encargado</th>
                         <th class="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-400">Número de Teléfono</th>
                         <th class="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-400">Correo Electrónico</th>
+                        <th class="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-400">Password</th>
                         <th class="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-400">Acciones</th>
                     </tr>
                 </thead>
@@ -55,12 +56,20 @@
                         <td class="px-4 py-3 text-gray-600 dark:text-gray-400"
                             th:text="${encargado.correo_electronico}"></td>
                         <td class="px-4 py-3 text-gray-600 dark:text-gray-400">
+                        <div class="flex items-center">
+                                <input type="password" class="bg-transparent border-none text-gray-600 dark:text-gray-400"
+                                    th:value="${encargado.password}" readonly />
+                                <button type="button" onclick="togglePassword(this)"
+                                        class="ml-2 text-sm text-blue-500 dark:text-blue-400">Mostrar</button>
+                            </div>
+                        </td>
+                        <td class="px-4 py-3 text-gray-600 dark:text-gray-400">
                             <div class="flex space-x-2">
                                 <a th:href="@{/encargado/editar/REST/}+${encargado.id}"
                                     class="inline-flex items-center justify-center rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-700 disabled:pointer-events-none disabled:opacity-50 dark:bg-blue-500 dark:text-white dark:hover:bg-blue-600 dark:focus-visible:ring-blue-700">
                                     Editar
                                 </a>
-                                <button th:onclick="'fxJSeliminarEncargado(' + ${encargado.id} + ')'"
+                                <button th:onclick="'fxJSEliminarEncargado(' + ${encargado.id} + ')'"
                                     class="inline-flex items-center justify-center rounded-md bg-red-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-red-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-red-700 disabled:pointer-events-none disabled:opacity-50 dark:bg-red-500 dark:text-white dark:hover:bg-red-600 dark:focus-visible:ring-red-700">
                                     Eliminar
                                 </button>
@@ -74,6 +83,17 @@
     <script type="text/javascript">
         function limpiarCampos() {
             window.location = '/encargado/listar/REST';
+        }
+
+        function togglePassword(button) {
+            var passwordInput = button.previousElementSibling;
+            if (passwordInput.type === "password") {
+                passwordInput.type = "text";
+                button.textContent = "Ocultar";
+            } else {
+                passwordInput.type = "password";
+                button.textContent = "Mostrar";
+            }
         }
     </script>
     <script src="/fxJSfuncionesREST.js"></script>

@@ -12,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -25,11 +26,10 @@ public class Guia_DespachoEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotBlank
+    @NotNull
     @Column(name = "cantidad_recibida")
     private int cantidad_recibida;
 
-    @NotBlank
     @Column(name = "fecha")
     private LocalDate fecha;
 

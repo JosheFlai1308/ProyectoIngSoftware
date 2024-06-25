@@ -34,14 +34,19 @@ public class EncargadoEntity {
     @Column(name = "correo_electronico")
     private String correo_electronico;
 
+    @NotBlank
+    @Column(name = "password")
+    private String password;
+
     public EncargadoEntity (@JsonProperty("id") int id,
                     @JsonProperty("nombre_encargado") String nombre_encargado,@JsonProperty("numero_telefono")  String numero_telefono,
-                    @JsonProperty("correo_electronico") String correo_electronico ){
+                    @JsonProperty("correo_electronico") String correo_electronico, @JsonProperty("password") String password){
         super();
         this.id = id;
         this.nombre_encargado = nombre_encargado;
         this.numero_telefono = numero_telefono;
         this.correo_electronico = correo_electronico;
+        this.password =  password;
     }
 
     public EncargadoDto toDto(){
@@ -50,6 +55,7 @@ public class EncargadoEntity {
     dto.setNombre_encargado(this.getNombre_encargado());
     dto.setNumero_telefono(this.getNumero_telefono());
     dto.setCorreo_electronico(this.getCorreo_electronico());
+    dto.setPassword(this.getPassword());
     return dto;
     }
 
