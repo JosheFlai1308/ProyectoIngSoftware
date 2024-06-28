@@ -1,5 +1,7 @@
 package com.grupo2.frontend.dto;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,4 +13,6 @@ public class ProveedorDto {
     private int id;
     private String nombre_proveedor;
     private String categoria;
+    private List<Integer> notas;
+    private int calificacion;
 }

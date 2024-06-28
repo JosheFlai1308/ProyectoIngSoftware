@@ -34,16 +34,26 @@ public class ProveedorEntity {
     @Column(name = "categoria")
     private String categoria;
 
+    @Column(name = "notas")
+    private List<Integer> notas;
+
+    @Column(name = "calificacion")
+    private float calificacion;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "proveedor")
     private List<Prod_Prov> prod_prov;
 
     public ProveedorEntity(@JsonProperty("id") int id,
             @JsonProperty("nombre_proveedor") String nombre_proveedor,
-            @JsonProperty("categoria") String categoria) {
+            @JsonProperty("categoria") String categoria,
+            @JsonProperty("notas") List<Integer> notas,
+            @JsonProperty("calificacion") int calificacion) {
         super();
         this.id = id;
         this.nombre_proveedor = nombre_proveedor;
         this.categoria = categoria;
+        this.notas = notas;
+        this.calificacion = calificacion;
     }
 
     public ProveedorDto toDto() {
@@ -51,6 +61,8 @@ public class ProveedorEntity {
         dto.setId(this.getId());
         dto.setNombre_proveedor(this.getNombre_proveedor());
         dto.setCategoria(this.getCategoria());
+        dto.setNotas(this.getNotas());
+        dto.setCalificacion(this.getCalificacion());
         return dto;
     }
 }
