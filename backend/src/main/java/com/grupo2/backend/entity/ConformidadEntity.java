@@ -27,7 +27,7 @@ public class ConformidadEntity {
     private int id_conformidad;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "conformidad")
-    private List<Linea_detalle_c> linea_detalle_c;
+    private List<LineadetalleC> linea_detalle_c;
 
     //Falta relacion con admin Y preguntar a chatgpt si hay que modificar los demás codigos 
 
