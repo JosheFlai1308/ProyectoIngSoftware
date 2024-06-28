@@ -11,7 +11,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -44,6 +46,12 @@ public class PedidoEntity {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
     private List<Linea_detalle_p> linea_detalle_p;
+
+    @OneToOne
+    @JoinColumn(name = "guia_despacho_id")
+    private Guia_DespachoEntity guiaDespacho;
+
+
 
     public PedidoEntity(@JsonProperty("id_pedido") int id_pedido,
             @JsonProperty("total") int total, 

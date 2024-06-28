@@ -15,13 +15,15 @@ import lombok.NoArgsConstructor;
 public class Guia_DespachoDto {
     private int id;
     private int cantidad_recibida;
+    private int cantidad_esperada;
     private LocalDate fecha;
 
     public Guia_DespachoEntity toEntity(){
         Guia_DespachoEntity g = new Guia_DespachoEntity();
         g.setId(this.getId());
-        g.setCantidad_recibida(this.cantidad_recibida);
+        g.setCantidad_recibida(this.getCantidad_recibida());
         g.setFecha(this.getFecha());
+        g.setCantidad_esperada((this.getCantidad_esperada()));
         return g;
     }
 

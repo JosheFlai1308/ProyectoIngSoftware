@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.grupo2.frontend.dto.EncargadoDto;
-import com.grupo2.frontend.dto.ProductoDto;
 import com.grupo2.frontend.service.ICrudServiceEncargado;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -125,6 +124,10 @@ public class ControladorEncargado {
         }
         return "redirect:/encargado/listar/REST";
     }
-    
-    
+
+    @GetMapping("/iniciar-sesion")
+    public String iniciarSesion(Model model) {
+        model.addAttribute("encargado", new EncargadoDto());
+        return "rest/encargado/login"; // Corregido según la ubicación del archivo
+    }
 }

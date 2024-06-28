@@ -23,4 +23,6 @@ public class PedidoDto {
     private Date fecha_entrega;
 
     private String estado;
+
+    private Guia_DespachoDto guiaDespachoDto;
 }
