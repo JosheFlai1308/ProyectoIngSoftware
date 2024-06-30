@@ -42,12 +42,6 @@ public class Guia_DespachoEntity {
     @Column(name = "fecha")
     private LocalDate fecha;
 
-    @OneToMany(mappedBy = "guia_despacho", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<EncargadoEntity> encargados;
-
-    @OneToOne(mappedBy = "guiaDespacho")
-    private PedidoEntity pedido;
-
     public Guia_DespachoEntity(@JsonProperty("id") int id, @JsonProperty("cantidad_recibida") int cantidad_recibida, @JsonProperty("cantidad_esperada") int cantidad_esperada,
     @JsonProperty("fecha") LocalDate fecha) {
         super();

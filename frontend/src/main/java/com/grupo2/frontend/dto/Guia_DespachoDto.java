@@ -15,5 +15,4 @@ public class Guia_DespachoDto {
     private LocalDate fecha;
     private int cantidad_recibida;
     private int cantidad_esperada;
-    private PedidoDto pedidoDto;
 }
