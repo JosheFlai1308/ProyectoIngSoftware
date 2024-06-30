@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top Proveedores por Calificación</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+
+<div class="container mt-4">
+  <h1 class="mb-4">Top 10 Proveedores por Calificación</h1>
+
+  <ul class="list-group" id="proveedoresList">
+    <!-- Aquí se cargarán dinámicamente los proveedores -->
+  </ul>
+
+</div>
+
+<!-- jQuery y Popper.js (necesarios para los plugins de Bootstrap) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+// Datos simulados de proveedores (reemplaza con tus datos reales o carga dinámicamente desde una API)
+const proveedores = [
+  { nombre: 'Proveedor A', calificacion: 4.5 },
+  { nombre: 'Proveedor B', calificacion: 4.2 },
+  { nombre: 'Proveedor C', calificacion: 4.8 },
+  { nombre: 'Proveedor D', calificacion: 4.1 },
+  { nombre: 'Proveedor E', calificacion: 4.7 },
+  { nombre: 'Proveedor F', calificacion: 4.3 },
+  { nombre: 'Proveedor G', calificacion: 4.9 },
+  { nombre: 'Proveedor H', calificacion: 4.6 },
+  { nombre: 'Proveedor I', calificacion: 4.4 },
+  { nombre: 'Proveedor J', calificacion: 4.0 }
+];
+
+// Función para cargar dinámicamente los proveedores en la lista
+function cargarProveedores() {
+  const proveedoresList = document.getElementById('proveedoresList');
+  proveedoresList.innerHTML = ''; // Limpiamos la lista antes de agregar nuevos elementos
+
+  // Ordenamos los proveedores por calificación (de mayor a menor)
+  proveedores.sort((a, b) => b.calificacion - a.calificacion);
+
+  // Iteramos sobre los primeros 10 proveedores (top 10)
+  proveedores.slice(0, 10).forEach((proveedor, index) => {
+    const listItem = document.createElement('li');
+    listItem.className = 'list-group-item';
+    listItem.innerHTML = `${index + 1}. ${proveedor.nombre} - Calificación: ${proveedor.calificacion}`;
+    proveedoresList.appendChild(listItem);
+  });
+}
+
+// Cargar los proveedores al cargar la página
+document.addEventListener('DOMContentLoaded', cargarProveedores);
+</script>
+
+</body>
+</html>
