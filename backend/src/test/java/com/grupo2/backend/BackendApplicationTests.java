@@ -1,13 +1,14 @@
 package com.grupo2.backend;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+
+import org.springframework.security.test.context.support.WithMockUser;
 
 @SpringBootTest
 class BackendApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    @WithMockUser
+    void contextLoads() {
+    }
 
 }

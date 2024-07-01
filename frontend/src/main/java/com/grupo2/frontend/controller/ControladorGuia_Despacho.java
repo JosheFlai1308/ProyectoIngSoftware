@@ -35,18 +35,23 @@ public class ControladorGuia_Despacho {
         List<Guia_DespachoDto> guias;
         try {
             guias = servicio.findAllREST(search);
+            for (Guia_DespachoDto guia : guias) {
+                System.out.println("Guía ID: " + guia.getId() + ", Encargado: " + guia.getEncargadoNombre());
+            }
         } catch (Exception e) {
             model.addAttribute("errorMessage", "Ocurrió un error al cargar las guías de despacho");
             e.printStackTrace();
             return "rest/guia_despacho/index";
         }
-
+    
         model.addAttribute("guias", guias);
         model.addAttribute("search", search);
         model.addAttribute("message", "Se han cargado todas las guías de despacho");
-
+    
         return "rest/guia_despacho/index";
     }
+    
+    
 
     @GetMapping("listar/nuevo/REST")
     public String agregarREST(Model model) {
@@ -130,5 +135,5 @@ public class ControladorGuia_Despacho {
             return "rest/guia_despacho/index";
         }
         return "redirect:/guia_despacho/listar/REST";
-    }
+    }   
 }

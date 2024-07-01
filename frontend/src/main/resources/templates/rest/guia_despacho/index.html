@@ -8,10 +8,13 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
         body {
-            background-image: url('https://images.pexels.com/photos/443446/pexels-photo-443446.jpeg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+            background-image: url('https://mundoconstructor.com.pe/wp-content/uploads/2023/09/Ingco_8-1.png');
+            background-size: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 200px;
         }
 
         .container {
@@ -84,6 +87,7 @@
         .btn-danger:hover {
             background-color: #da190b;
         }
+        
     </style>
 </head>
 
@@ -131,10 +135,8 @@
                     <tr th:each="guia : ${guias}"
                         class="border-b border-gray-400 dark:border-gray-600 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors">
                         <td class="px-4 py-3 text-gray-600 dark:text-gray-400" th:text="${guia.id}"></td>
-                        <td class="px-4 py-3 text-gray-600 dark:text-gray-400"
-                            th:text="${guia.cantidad_recibida}"></td>
-                        <td class="px-4 py-3 text-gray-600 dark:text-gray-400"
-                            th:text="${guia.cantidad_esperada}"></td>
+                        <td class="px-4 py-3 text-gray-600 dark:text-gray-400" th:text="${guia.cantidad_recibida}"></td>
+                        <td class="px-4 py-3 text-gray-600 dark:text-gray-400" th:text="${guia.cantidad_esperada}"></td>
                         <td class="px-4 py-3 text-gray-600 dark:text-gray-400" th:text="${guia.fecha}"></td>
                         <td class="px-4 py-3 text-gray-600 dark:text-gray-400" th:text="${guia.encargadoNombre}"></td>
                         <td class="px-4 py-3">

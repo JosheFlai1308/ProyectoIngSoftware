@@ -39,33 +39,34 @@ public class CrudServiceGuia_Despacho implements ICrudServiceGuia_Despacho {
     }
 
     @Override
-    public List<Guia_DespachoDto> findAllREST(String search) throws Exception {
-        String url = "http://localhost:8080/guia_despacho/REST";
+public List<Guia_DespachoDto> findAllREST(String search) throws Exception {
+    String url = "http://localhost:8080/guia_despacho/REST";
 
-        if (search != null) {
-            url += "?search=" + search;
-        }
-
-        HttpHeaders headers = httpHeaders();
-
-        ResponseEntity<Guia_DespachoDto[]> responseEntity = new RestTemplate().exchange(
-                url, HttpMethod.GET, new HttpEntity<>(headers), Guia_DespachoDto[].class);
-
-        if (responseEntity.getStatusCode().is2xxSuccessful()) {
-            List<Guia_DespachoDto> guias = Arrays.asList(responseEntity.getBody());
-            for (Guia_DespachoDto guia : guias) {
-                if (guia.getEncargadoId() != null) {
-                    EncargadoDto encargado = servicioEncargado.findByIdREST(guia.getEncargadoId()).orElse(null);
-                    if (encargado != null) {
-                        guia.setEncargadoNombre(encargado.getNombre_encargado());
-                    }
-                }
-            }
-            return guias;
-        } else {
-            throw new Exception(this.getClass().getCanonicalName() + " method:findAllREST Error API Rest");
-        }
+    if (search != null) {
+        url += "?search=" + search;
     }
+
+    HttpHeaders headers = httpHeaders();
+
+    ResponseEntity<Guia_DespachoDto[]> responseEntity = new RestTemplate().exchange(
+            url, HttpMethod.GET, new HttpEntity<>(headers), Guia_DespachoDto[].class);
+
+    if (responseEntity.getStatusCode().is2xxSuccessful()) {
+        List<Guia_DespachoDto> guias = Arrays.asList(responseEntity.getBody());
+        for (Guia_DespachoDto guia : guias) {
+            if (guia.getEncargados() != null && !guia.getEncargados().isEmpty()) {
+                guia.setEncargadoNombre(guia.getEncargados().get(0).getNombre_encargado());
+            }
+        }
+        return guias;
+    } else {
+        throw new Exception(this.getClass().getCanonicalName() + " method:findAllREST Error API Rest");
+    }
+}
+
+    
+    
+
 
     @Override
     public Optional<Guia_DespachoDto> findByIdREST(int id) throws Exception {

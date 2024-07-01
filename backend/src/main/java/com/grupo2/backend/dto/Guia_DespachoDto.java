@@ -20,6 +20,7 @@ public class Guia_DespachoDto {
     private int cantidad_esperada;
     private LocalDate fecha;
     private List<EncargadoDto> encargados;
+    private String encargadoNombre;
 
     public Guia_DespachoEntity toEntity(){
         Guia_DespachoEntity g = new Guia_DespachoEntity();
@@ -40,6 +41,9 @@ public class Guia_DespachoDto {
         this.fecha = guia.getFecha();
         if (guia.getEncargados() != null) {
             this.encargados = guia.getEncargados().stream().map(EncargadoDto::new).collect(Collectors.toList());
+            if (!this.encargados.isEmpty()) {
+                this.encargadoNombre = this.encargados.get(0).getNombre_encargado();
+            }
         }
     }
 
