@@ -32,7 +32,7 @@ public class ControladorProveedor {
 
 	@GetMapping("/{id_proveedor}/notas_conformidad")
     public List<Float> getNotasConformidad(@PathVariable int id_proveedor) {
-        return servicio.getNotasConformidad(id_proveedor);
+        return servicio.getNotasConformidadPedido(id_proveedor);
     }
 
 	@PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
