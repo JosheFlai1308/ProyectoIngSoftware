@@ -19,15 +19,9 @@ public class CrudServiceProveedor implements ICrudServiceProveedor{
     @Autowired
 	private IProveedorRepository data;
 
-	public int findNote(ProveedorDto dto) {
-        int proveedorId = dto.getId();  // Suponiendo que ProveedorDto tiene un método getId()
-        int notaConformidad = data.findNotaConformidadByProveedor(proveedorId); 
-        return notaConformidad;
-    }
-
 	@Override
-	public List<Float> getNotasConformidad(int id_proveedor) {
-        return data.GetNotaConformidadPedido(id_proveedor);
+	public List<Float> getNotasConformidadPedido(int id_proveedor) {
+        return data.getNotasConformidadPedido(id_proveedor);
 	}
 	
 	@Override

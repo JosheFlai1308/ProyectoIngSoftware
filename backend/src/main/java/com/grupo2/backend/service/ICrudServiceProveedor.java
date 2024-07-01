@@ -7,7 +7,7 @@ import com.grupo2.backend.dto.ProveedorDto;
 
 public interface ICrudServiceProveedor {
 
-    public List<Float> getNotasConformidad(int id_proveedor);
+    public List<Float> getNotasConformidadPedido(int id_proveedor);
 
     public List<ProveedorDto> findAll(String search);
 
