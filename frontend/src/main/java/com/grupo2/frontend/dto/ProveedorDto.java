@@ -14,5 +14,5 @@ public class ProveedorDto {
     private String nombre_proveedor;
     private String categoria;
     private List<Integer> notas;
-    private int calificacion;
+    private float calificacion;
 }

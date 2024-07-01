@@ -47,7 +47,7 @@ public class ProveedorEntity {
             @JsonProperty("nombre_proveedor") String nombre_proveedor,
             @JsonProperty("categoria") String categoria,
             @JsonProperty("notas") List<Integer> notas,
-            @JsonProperty("calificacion") int calificacion) {
+            @JsonProperty("calificacion") float calificacion) {
         super();
         this.id = id;
         this.nombre_proveedor = nombre_proveedor;

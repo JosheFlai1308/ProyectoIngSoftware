@@ -43,6 +43,7 @@
                         <th class="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-400">ID</th>
                         <th class="px-4 py-3 text-center font-medium text-gray-600 dark:text-gray-400">Nombre</th>
                         <th class="px-4 py-3 text-center font-medium text-gray-600 dark:text-gray-400">Categoria</th>
+                        <th class="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-400">Calificación</th>
                         <th class="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-400">Acciones</th>
                     </tr>
                 </thead>
@@ -52,8 +53,10 @@
                         <td class="px-4 py-3 text-gray-600 dark:text-gray-400" th:text="${proveedor.id}"></td>
                         <td class="px-4 py-3 text-center text-gray-600 dark:text-gray-400"
                             th:text="${proveedor.nombre_proveedor}"></td>
-                            <td class="px-4 py-3 text-center text-gray-600 dark:text-gray-400"
-                            th:text="${proveedor.Categoria}"></td>
+                        <td class="px-4 py-3 text-center text-gray-600 dark:text-gray-400"
+                            th:text="${proveedor.categoria}"></td>
+                        <td class="px-4 py-3 text-center text-gray-600 dark:text-gray-400"
+                            th:text="${proveedor.calificacion}"></td>
                         <td class="px-4 py-3 text-gray-600 dark:text-gray-400">
                             <div class="flex space-x-2">
                                 <a th:href="@{/proveedor/editar/REST/}+${proveedor.id}"

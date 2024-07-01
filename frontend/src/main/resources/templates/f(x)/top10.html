@@ -3,18 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Top Proveedores por Calificación</title>
+  <title>Top Proveedores </title>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .provider-card {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1rem;
+    }
+    .provider-card img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-right: 1rem;
+    }
+    .provider-details {
+      flex: 1;
+    }
+    .provider-name {
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+    .provider-rating {
+      display: flex;
+      align-items: center;
+    }
+    .provider-rating .star-icon {
+      color: #ffc107;
+    }
+    .header h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #343a40;
+    }
+    .header p {
+      font-size: 1.2rem;
+      color: #6c757d;
+    }
+  </style>
 </head>
 <body>
 
 <div class="container mt-4">
-  <h1 class="mb-4">Top 10 Proveedores por Calificación</h1>
+  <div class="header">
+    <h1>Top 10 Proveedores registrados</h1>
+    <p>Explora los proveedores mejor evaluados en base a su conformidad.</p>
+  </div>
 
-  <ul class="list-group" id="proveedoresList">
-    <!-- Aquí se cargarán dinámicamente los proveedores -->
-  </ul>
+  <div id="proveedoresList">
+    <!-- Thymeleaf se encargará de llenar esta lista -->
+    <div th:each="proveedor, iterStat : ${proveedores}" class="provider-card">
+      <img th:src="@{/images/provider-placeholder.png}" alt="Proveedor">
+      <div class="provider-details">
+        <div class="provider-name" th:text="${iterStat.index + 1} + '. ' + ${proveedor.nombre_proveedor}"></div>
+        <div th:text="${proveedor.categoria}"></div>
+        <div class="provider-rating">
+          <i class="star-icon">&#9733;</i>
+          <span th:text="${proveedor.calificacion} "></span>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>
 
@@ -23,42 +80,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <!-- Bootstrap JS -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-<script>
-// Datos simulados de proveedores (reemplaza con tus datos reales o carga dinámicamente desde una API)
-const proveedores = [
-  { nombre: 'Proveedor A', calificacion: 4.5 },
-  { nombre: 'Proveedor B', calificacion: 4.2 },
-  { nombre: 'Proveedor C', calificacion: 4.8 },
-  { nombre: 'Proveedor D', calificacion: 4.1 },
-  { nombre: 'Proveedor E', calificacion: 4.7 },
-  { nombre: 'Proveedor F', calificacion: 4.3 },
-  { nombre: 'Proveedor G', calificacion: 4.9 },
-  { nombre: 'Proveedor H', calificacion: 4.6 },
-  { nombre: 'Proveedor I', calificacion: 4.4 },
-  { nombre: 'Proveedor J', calificacion: 4.0 }
-];
-
-// Función para cargar dinámicamente los proveedores en la lista
-function cargarProveedores() {
-  const proveedoresList = document.getElementById('proveedoresList');
-  proveedoresList.innerHTML = ''; // Limpiamos la lista antes de agregar nuevos elementos
-
-  // Ordenamos los proveedores por calificación (de mayor a menor)
-  proveedores.sort((a, b) => b.calificacion - a.calificacion);
-
-  // Iteramos sobre los primeros 10 proveedores (top 10)
-  proveedores.slice(0, 10).forEach((proveedor, index) => {
-    const listItem = document.createElement('li');
-    listItem.className = 'list-group-item';
-    listItem.innerHTML = `${index + 1}. ${proveedor.nombre} - Calificación: ${proveedor.calificacion}`;
-    proveedoresList.appendChild(listItem);
-  });
-}
-
-// Cargar los proveedores al cargar la página
-document.addEventListener('DOMContentLoaded', cargarProveedores);
-</script>
 
 </body>
 </html>
