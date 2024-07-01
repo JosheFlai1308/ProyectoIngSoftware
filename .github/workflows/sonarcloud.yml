@@ -37,3 +37,5 @@ jobs:
         run: |
           cd backend
           mvn -B -e verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=JosheFlai1308_ProyectoIngSoftware
+
+          

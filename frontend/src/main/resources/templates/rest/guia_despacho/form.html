@@ -2,47 +2,90 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Añadir Nueva Guía de Despacho</title>
+    <title>Guía de Despacho</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-ozK0P+Ume+hfswYnFyL4GHF0t1mE0Gyx4h9bkC+mzDe/YmdZ/U5eaKbrGjjw2+bIkMyOgXx32z6jE8kDAk64UA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        .background-image {
-            background-image: url('https://images.unsplash.com/photo-1593642634367-d91a135587b5?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
+        .form-container {
+            margin: 50px auto;
+            padding: 20px;
+            max-width: 800px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .form-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .form-table th, .form-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .form-table th {
+            background-color: #f9f9f9;
         }
     </style>
 </head>
-<body class="background-image">
-    <div class="container mx-auto px-4 md:px-6 py-12">
-        <div class="flex justify-center">
-            <div class="w-full max-w-md bg-white bg-opacity-90 dark:bg-gray-800 dark:bg-opacity-90 rounded-lg shadow-md p-6">
-                <div class="mb-4 text-center">
-                    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-2">Añadir Nueva Guía de Despacho</h2>
-                    <p class="text-gray-600 dark:text-gray-400">Complete el formulario a continuación para crear una nueva guía de despacho.</p>
-                </div>
-                <div>
-                    <form th:action="@{/guia_despacho/grabar/REST}" th:object="${guia}" method="POST" class="grid gap-6">
-                        <input type="hidden" th:field="*{id}" />
-                        <div class="grid gap-4">
-                            <label for="cantidad_recibida" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Cantidad Recibida <i class="fas fa-box ml-2"></i></label>
-                            <input type="number" th:field="*{cantidad_recibida}" id="cantidad_recibida" placeholder="Ingrese la cantidad recibida" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300" required/>
-                        </div>
-                        <div class="grid gap-4">
-                            <label for="cantidad_esperada" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Cantidad Esperada <i class="fas fa-box ml-2"></i></label>
-                            <input type="number" th:field="*{cantidad_esperada}" id="cantidad_esperada" placeholder="Ingrese la cantidad esperada" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300" required/>
-                        </div>
-                        <div class="grid gap-4">
-                            <label for="fecha" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Fecha <i class="fas fa-calendar-alt ml-2"></i></label>
-                            <input type="date" th:field="*{fecha}" id="fecha" placeholder="Ingrese la fecha" class="mt-1 block w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm dark:bg-gray-700 dark:text-gray-300" required/>
-                        </div>
-                        <button type="submit" class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 hover:from-green-500 hover:via-blue-600 hover:to-purple-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                            <i class="fas fa-check mr-2"></i> Aceptar
-                        </button>
-                    </form>
-                </div>
+<body class="bg-gray-200">
+    <div class="container mx-auto form-container">
+        <div class="form-title">Guía de Despacho</div>
+        <form th:action="@{/guia_despacho/grabar/REST}" th:object="${guia}" method="POST">
+            <div class="form-group">
+                <label for="id" class="form-label">Pedido N°:</label>
+                <input type="text" th:field="*{id}" id="id" class="form-input" readonly/>
             </div>
-        </div>
+            <div class="form-group">
+                <label for="fecha" class="form-label">Fecha:</label>
+                <input type="date" th:field="*{fecha}" id="fecha" class="form-input" required/>
+            </div>
+            <table class="form-table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Cantidad</th>
+                        <th>Cantidad Recibida</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" name="producto" placeholder="Producto" class="form-input"/></td>
+                        <td><input type="number" name="cantidad_esperada" placeholder="Cantidad" class="form-input"/></td>
+                        <td><input type="number" name="cantidad_recibida" placeholder="Cantidad Recibida" class="form-input"/></td>
+                    </tr>
+                    <!-- Aquí puedes añadir más filas si es necesario -->
+                </tbody>
+            </table>
+            <div class="form-group">
+                <label for="encargadoId" class="form-label">Encargado:</label>
+                <select th:field="*{encargadoId}" id="encargadoId" class="form-input" required>
+                    <option th:each="encargado : ${encargados}" th:value="${encargado.id}" th:text="${encargado.nombre_encargado}">Seleccionar Encargado</option>
+                </select>
+            </div>
+            <button type="submit" class="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Aceptar
+            </button>
+        </form>
     </div>
 </body>
 </html>

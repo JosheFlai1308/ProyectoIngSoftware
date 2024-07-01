@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "encargado")
+@Table(name = "encargado", uniqueConstraints = @UniqueConstraint(columnNames = "correo_electronico"))
 public class EncargadoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +38,7 @@ public class EncargadoEntity {
     private String correo_electronico;
 
     @NotBlank
-    @Column(name = "password")
+    @Column(name = "password", unique = true)
     private String password;
 
     @ManyToOne

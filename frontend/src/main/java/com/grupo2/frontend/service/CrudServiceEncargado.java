@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.grupo2.frontend.dto.EncargadoDto;
+
 @Component
 @Service
 public class CrudServiceEncargado implements ICrudServiceEncargado {

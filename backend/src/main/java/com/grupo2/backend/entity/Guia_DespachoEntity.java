@@ -1,7 +1,9 @@
 package com.grupo2.backend.entity;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.grupo2.backend.dto.Guia_DespachoDto;
@@ -42,6 +44,9 @@ public class Guia_DespachoEntity {
     @Column(name = "fecha")
     private LocalDate fecha;
 
+    @OneToMany(mappedBy = "guia_despacho", cascade = CascadeType.ALL, fetch = FetchType.EAGER) // Cambiado a EAGER
+    private List<EncargadoEntity> encargados;
+
     public Guia_DespachoEntity(@JsonProperty("id") int id, @JsonProperty("cantidad_recibida") int cantidad_recibida, @JsonProperty("cantidad_esperada") int cantidad_esperada,
     @JsonProperty("fecha") LocalDate fecha) {
         super();
@@ -57,6 +62,9 @@ public class Guia_DespachoEntity {
     dto.setCantidad_recibida(this.getCantidad_recibida());
     dto.setFecha(this.getFecha());
     dto.setCantidad_esperada(this.getCantidad_esperada());
+    if (this.encargados != null && !this.encargados.isEmpty()) {
+            dto.setEncargados(this.encargados.stream().map(EncargadoEntity::toDto).collect(Collectors.toList()));
+        }
     return dto;
     }
 
