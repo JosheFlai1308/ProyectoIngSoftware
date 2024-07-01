@@ -86,7 +86,6 @@ public class ControladorProveedor {
     	ProveedorDto proveedor = null;
     	if (p.getId()==0) {
     		try {
-				p.setCalificacion(calculoCalificacion(p.getNotas()));
     			proveedor = servicio.saveREST(p);
 			}
 			catch (Exception e) {
@@ -102,8 +101,7 @@ public class ControladorProveedor {
     	}else
 		{
 			try {
-				p.setCalificacion(calculoCalificacion(p.getNotas()));
-				proveedor = servicio.editarREST(p);
+    			proveedor = servicio.saveREST(p);
 			}
 			catch (Exception e)
 			{
@@ -170,9 +168,9 @@ public class ControladorProveedor {
 		}
 	}
 
-	public int calculoCalificacion(List<Integer> notas){
-		int calificacion = 0 ;
-		for (int nota : notas){
+	public float calculoCalificacion(List<Float> notas){
+		float calificacion = 0 ;
+		for (float nota : notas){
 			calificacion += nota;
 		}
 		return calificacion/(notas.size());

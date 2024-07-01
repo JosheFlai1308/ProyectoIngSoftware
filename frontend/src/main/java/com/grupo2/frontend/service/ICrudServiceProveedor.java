@@ -6,6 +6,9 @@ import java.util.Optional;
 import com.grupo2.frontend.dto.ProveedorDto;
 
 public interface ICrudServiceProveedor {
+
+    public List<Float> getNotasConformidad(int id_proveedor);
+
     public List<ProveedorDto> findAllREST(String search) throws Exception;
 
     public Optional<ProveedorDto> findByIdREST(int id) throws Exception;

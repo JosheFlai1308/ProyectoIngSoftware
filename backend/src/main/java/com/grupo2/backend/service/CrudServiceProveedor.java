@@ -20,6 +20,11 @@ public class CrudServiceProveedor implements ICrudServiceProveedor{
 	private IProveedorRepository data;
 
 	@Override
+	public List<Float> getNotasConformidad(int id_proveedor) {
+        return data.GetNotaConformidadPedido(id_proveedor);
+	}
+	
+	@Override
 	public List<ProveedorDto> findAll(String search) {
 		if (search != null) {
 			List<ProveedorEntity> listE = (List<ProveedorEntity>) data.findAll(search);

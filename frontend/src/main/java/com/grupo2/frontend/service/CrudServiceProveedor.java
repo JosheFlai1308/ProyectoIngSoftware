@@ -20,6 +20,11 @@ import com.grupo2.frontend.dto.ProveedorDto;
 @Component
 @Service
 public class CrudServiceProveedor implements ICrudServiceProveedor{
+
+	public List<Float> getNotasConformidad(int id_proveedor){
+		return null;
+		
+	}
     
     private String getBasicAuthHeader() {
 		String credentials = "admin:password";

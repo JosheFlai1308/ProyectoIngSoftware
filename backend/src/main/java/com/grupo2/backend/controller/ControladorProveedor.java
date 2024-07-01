@@ -30,6 +30,11 @@ public class ControladorProveedor {
     @Autowired
 	private ICrudServiceProveedor servicio;
 
+	@GetMapping("/{id_proveedor}/notas_conformidad")
+    public List<Float> getNotasConformidad(@PathVariable int id_proveedor) {
+        return servicio.getNotasConformidad(id_proveedor);
+    }
+
 	@PreAuthorize("hasAuthority('ROLE_ADMIN') or hasAuthority('ROLE_USER')")
 	@PostMapping("/REST")
 	public ResponseEntity<ProveedorDto> agregarProveedor(@Valid @NonNull @RequestBody ProveedorDto dto) {
