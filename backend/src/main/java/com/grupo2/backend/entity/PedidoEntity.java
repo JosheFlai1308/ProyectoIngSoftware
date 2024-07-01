@@ -47,11 +47,6 @@ public class PedidoEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
     private List<Linea_detalle_p> linea_detalle_p;
 
-    @OneToOne
-    @JoinColumn(name = "guia_despacho_id")
-    private Guia_DespachoEntity guiaDespacho;
-
-
 
     public PedidoEntity(@JsonProperty("id_pedido") int id_pedido,
             @JsonProperty("total") int total, 

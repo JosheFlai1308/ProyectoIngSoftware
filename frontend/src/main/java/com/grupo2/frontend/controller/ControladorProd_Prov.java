@@ -61,7 +61,7 @@ public class ControladorProd_Prov {
 		}
 		return "rest/prod_prov/index";
 	}
- 
+
     //http://localhost:8081/prod_prov/nuevo/REST
     @GetMapping("listar/nuevo/REST")
     public String agregarREST(Model model) {
