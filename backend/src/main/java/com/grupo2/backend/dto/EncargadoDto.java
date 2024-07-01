@@ -16,6 +16,7 @@ public class EncargadoDto {
     private String numero_telefono;
     private String correo_electronico;
     private String password;
+    private Guia_DespachoDto guia_despacho;
 
 
     public EncargadoEntity toEntity (){
@@ -25,6 +26,9 @@ public class EncargadoDto {
         e.setNumero_telefono(this.getNumero_telefono());
         e.setCorreo_electronico(this.getCorreo_electronico());
         e.setPassword(this.getPassword());
+        if (this.getGuia_despacho() != null) {
+            e.setGuia_despacho(this.getGuia_despacho().toEntity());
+        }
         return e;
     }
     public EncargadoDto(EncargadoEntity encargado) {
@@ -33,6 +37,9 @@ public class EncargadoDto {
         this.numero_telefono = encargado.getNumero_telefono();
         this.correo_electronico = encargado.getCorreo_electronico();
         this.password =  encargado.getPassword();
+        if (encargado.getGuia_despacho() != null) {
+            this.guia_despacho = new Guia_DespachoDto(encargado.getGuia_despacho());
+        }
     }
 
     public static EncargadoDto fromEntity(EncargadoEntity encargado) {

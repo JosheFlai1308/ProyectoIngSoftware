@@ -13,4 +13,5 @@ public class EncargadoDto {
     private String numero_telefono;
     private String correo_electronico;
     private String password;
+    private Guia_DespachoDto guia_despacho;
 }

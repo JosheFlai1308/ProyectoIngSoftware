@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <title>Índice de Guías de Despacho</title>
@@ -121,8 +120,9 @@
                     <tr>
                         <th>Número de Guía</th>
                         <th>Cantidad Recibida</th>
-                        <th>Cantidad Esperada</th> <!-- Nueva columna -->
+                        <th>Cantidad Esperada</th>
                         <th>Fecha</th>
+                        <th>Encargado</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -134,8 +134,9 @@
                         <td class="px-4 py-3 text-gray-600 dark:text-gray-400"
                             th:text="${guia.cantidad_recibida}"></td>
                         <td class="px-4 py-3 text-gray-600 dark:text-gray-400"
-                            th:text="${guia.cantidad_esperada}"></td> <!-- Mostrar cantidad esperada -->
+                            th:text="${guia.cantidad_esperada}"></td>
                         <td class="px-4 py-3 text-gray-600 dark:text-gray-400" th:text="${guia.fecha}"></td>
+                        <td class="px-4 py-3 text-gray-600 dark:text-gray-400" th:text="${guia.encargadoNombre}"></td>
                         <td class="px-4 py-3">
                             <!-- Enlaces para editar y eliminar -->
                             <a th:href="@{/guia_despacho/editar/REST/}+${guia.id}"
@@ -147,7 +148,6 @@
                                 Eliminar
                             </button>
                         </td>
-                        
                     </tr>
                 </tbody>
             </table>
@@ -160,5 +160,4 @@
     </script>
     <script src="/fxJSfuncionesREST.js"></script>
 </body>
-
 </html>

@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.grupo2.frontend.dto.EncargadoDto;
 import com.grupo2.frontend.dto.Guia_DespachoDto;
+import com.grupo2.frontend.service.ICrudServiceEncargado;
 import com.grupo2.frontend.service.ICrudServiceGuia_Despacho;
 
 import jakarta.validation.Valid;
@@ -24,6 +26,9 @@ public class ControladorGuia_Despacho {
     
     @Autowired
     public ICrudServiceGuia_Despacho servicio;
+
+    @Autowired
+    public ICrudServiceEncargado servicioEncargado;
 
     @GetMapping("listar/REST")
     public String listarREST(Model model, @RequestParam(name = "search", required = false) String search) {
@@ -45,16 +50,28 @@ public class ControladorGuia_Despacho {
 
     @GetMapping("listar/nuevo/REST")
     public String agregarREST(Model model) {
+        List<EncargadoDto> encargados;
+        try {
+            encargados = servicioEncargado.findAllREST(null);
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", "Ocurrió un error al cargar los encargados");
+            e.printStackTrace();
+            return "rest/guia_despacho/form";
+        }
+
         model.addAttribute("guia", new Guia_DespachoDto());
+        model.addAttribute("encargados", encargados);
         return "rest/guia_despacho/form";
     }
 
     @GetMapping("editar/REST/{id}")
     public String editarREST(@PathVariable int id, Model model) {
         Guia_DespachoDto guia = null;
+        List<EncargadoDto> encargados;
         try {
             Optional<Guia_DespachoDto> dto = servicio.findByIdREST(id);
             guia = dto.orElse(null);
+            encargados = servicioEncargado.findAllREST(null);
         } catch (Exception e) {
             model.addAttribute("errorMessage", e.getMessage());
             e.printStackTrace();
@@ -64,6 +81,7 @@ public class ControladorGuia_Despacho {
             model.addAttribute("errorMessage", "Ocurrió un error en editar/REST/{id}");
         } else {
             model.addAttribute("guia", guia);
+            model.addAttribute("encargados", encargados);
         }
         return "rest/guia_despacho/form";
     }
