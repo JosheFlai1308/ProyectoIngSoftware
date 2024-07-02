@@ -35,25 +35,25 @@ public class ControladorLinea_detalle_p {
 	public ControladorPedido controller_pedido;
 
 	// http://localhost:8081/linea_detalle_p/listar/REST
-	@GetMapping("listar/REST")
+	@GetMapping("/listar/REST")
 	public String listarREST(Model model, @RequestParam(name = "search", required = false) String search,
 			HttpServletRequest request) {
-		List<Linea_detalle_pDto> lineas_detalle = null;
+		List<Linea_detalle_pDto> lineas_detalle_p = null;
 		try {
-			lineas_detalle = servicio.findAllREST(search);
+			lineas_detalle_p = servicio.findAllREST(search);
 		} catch (Exception e) {
 			model.addAttribute("errorMessage", e.getMessage());
 			e.printStackTrace();
 			return "rest/linea_detalle_p/index";
 		}
-		if (lineas_detalle != null) {
-			model.addAttribute("lineas_detalle", lineas_detalle);
+		if (lineas_detalle_p != null) {
+			model.addAttribute("lineas_detalle_p", lineas_detalle_p);
 			model.addAttribute("productos", controller_producto.getAll(model));
 			model.addAttribute("pedidos", controller_pedido.getAll(model));
 			model.addAttribute("search", search);
 			model.addAttribute("Message", "Se han cargado todas las lineas_detalle");
 		} else {
-			model.addAttribute("errorMessage", "Ocurrio un error es listar/REST");
+			model.addAttribute("errorMessage", "Ocurrio un error en listar/REST");
 		}
 		return "rest/linea_detalle_p/index";
 	}
