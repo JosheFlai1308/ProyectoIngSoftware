@@ -11,9 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -27,7 +25,6 @@ public class PedidoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_pedido;
-
 
     @Column(name = "total")
     private int total;
@@ -47,13 +44,12 @@ public class PedidoEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido")
     private List<Linea_detalle_p> linea_detalle_p;
 
-
     public PedidoEntity(@JsonProperty("id_pedido") int id_pedido,
-            @JsonProperty("total") int total, 
-            @JsonProperty("nota_conformidad") String nota_conformidad, 
-            @JsonProperty("fecha_emitido") Date fecha_emitido, 
-            @JsonProperty("fecha_entrega") Date fecha_entrega, 
-            @JsonProperty("estado") String estado){
+            @JsonProperty("total") int total,
+            @JsonProperty("nota_conformidad") String nota_conformidad,
+            @JsonProperty("fecha_emitido") Date fecha_emitido,
+            @JsonProperty("fecha_entrega") Date fecha_entrega,
+            @JsonProperty("estado") String estado) {
         super();
         this.id_pedido = id_pedido;
         this.total = total;
@@ -61,7 +57,6 @@ public class PedidoEntity {
         this.fecha_emitido = fecha_emitido;
         this.fecha_entrega = fecha_entrega;
         this.estado = estado;
-
 
     }
 

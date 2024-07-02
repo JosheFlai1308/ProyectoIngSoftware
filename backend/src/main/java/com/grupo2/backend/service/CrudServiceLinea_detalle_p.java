@@ -21,15 +21,19 @@ public class CrudServiceLinea_detalle_p implements ICrudServiceLinea_detalle_p {
 
     @Override
     public List<Linea_detalle_pDto> findAll(String search) {
-        List<Linea_detalle_p> listE;
         if (search != null) {
-            listE = data.findAll(search);
-        } else {
-            listE = (List<Linea_detalle_p>) data.findAll();
+            List<Linea_detalle_p> listE = (List<Linea_detalle_p>) data.findAll(search);
+            List<Linea_detalle_pDto> listDto = new ArrayList<>();
+            for (Linea_detalle_p pp : listE) {
+                listDto.add(pp.toDto());
+            }
+            return listDto;
         }
+
+        List<Linea_detalle_p> listE = (List<Linea_detalle_p>) data.findAll();
         List<Linea_detalle_pDto> listDto = new ArrayList<>();
-        for (Linea_detalle_p e : listE) {
-            listDto.add(e.toDto());
+        for (Linea_detalle_p pp : listE) {
+            listDto.add(pp.toDto());
         }
         return listDto;
     }

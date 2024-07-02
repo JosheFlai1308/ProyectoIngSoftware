@@ -1,12 +1,10 @@
 package com.grupo2.backend.entity;
 
 import java.util.List;
-import java.sql.Date;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.grupo2.backend.dto.ConformidadDTO;
 
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,12 +27,13 @@ public class ConformidadEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "conformidad")
     private List<LineadetalleCEntity> linea_detalle_c;
 
-    //Falta relacion con admin Y preguntar a chatgpt si hay que modificar los demás codigos 
+    // Falta relacion con admin Y preguntar a chatgpt si hay que modificar los demás
+    // codigos
 
-    public ConformidadEntity(@JsonProperty("id_conformidad") int id_conformidad){
+    public ConformidadEntity(@JsonProperty("id_conformidad") int id_conformidad) {
         super();
         this.id_conformidad = id_conformidad;
-    
+
     }
 
     public ConformidadDTO toDto() {

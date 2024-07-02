@@ -11,8 +11,8 @@ public class Linea_detalle_pDto {
 
     private int id;
     private int cantidad;
-    private int id_producto;
+    private String id_producto;
     private ProductoDto producto;
-    private int id_pedido;
+    private String id_pedido;
     private PedidoDto pedido;
 }

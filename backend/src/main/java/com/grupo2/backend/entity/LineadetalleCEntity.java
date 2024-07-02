@@ -1,14 +1,8 @@
 package com.grupo2.backend.entity;
 
-import org.xml.sax.SAXException;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.grupo2.backend.dto.PedidoDto;
-import com.grupo2.backend.dto.ProductoDto;
+
 import com.grupo2.backend.dto.LineadetalleCDTO;
-import com.grupo2.backend.dto.ConformidadDTO;
-import com.grupo2.backend.dto.Guia_DespachoDto;
-import com.grupo2.backend.dto.Linea_detalle_pDto;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -51,7 +45,7 @@ public class LineadetalleCEntity {
         this.pje_criterio = pje_criterio;
         this.conformidad = conformidad;
     }
-    
+
     public LineadetalleCDTO toDto() {
         LineadetalleCDTO dto = new LineadetalleCDTO();
         dto.setId_linea_detallec(this.getId_linea_detallec());
