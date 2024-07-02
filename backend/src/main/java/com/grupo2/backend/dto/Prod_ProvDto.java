@@ -18,14 +18,14 @@ public class Prod_ProvDto {
     private ProductoDto producto;
     private ProveedorDto proveedor;
 
-    public ProductoEntity loadProductoEntity(){
+    public ProductoEntity loadProductoEntity() {
         ProductoEntity prod = new ProductoEntity();
         prod.setId(this.getProducto().getId());
         prod.setNombre_producto(this.getProducto().getNombre_producto());
         return prod;
     }
-    
-    public ProveedorEntity loadProveedorEntity(){
+
+    public ProveedorEntity loadProveedorEntity() {
         ProveedorEntity prov = new ProveedorEntity();
         prov.setId(this.getProveedor().getId());
         prov.setNombre_proveedor(this.getProveedor().getNombre_proveedor());

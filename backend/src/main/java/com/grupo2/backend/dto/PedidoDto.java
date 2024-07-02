@@ -1,7 +1,6 @@
 package com.grupo2.backend.dto;
 
 import java.sql.Date;
-import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -27,7 +26,6 @@ public class PedidoDto {
     private Date fecha_entrega;
 
     private String estado;
-
 
     // Constructor that converts from entity to DTO
     public PedidoDto(PedidoEntity pedido) {

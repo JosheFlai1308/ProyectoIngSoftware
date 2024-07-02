@@ -2,14 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
-    <title>Índice de Lineas Detalle</title>
+    <title>Índice de linea_detalle_p</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
     />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="/fxJSfuncionesREST.js"></script>
   </head>
 
   <body>
@@ -17,13 +16,13 @@
       <div class="flex flex-col items-center mb-8">
         <div class="flex items-center justify-between w-full">
           <h1 class="text-4xl font-bold text-gray-800 dark:text-gray-200">
-            Índice de Lineas Detalle
+            Índice de linea_detalle_p
           </h1>
           <a
-            th:href="@{/linea_detalle_p/listar/nuevo/REST}"
+            th:href="@{nuevo/REST}"
             class="inline-flex items-center justify-center rounded-md bg-green-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-green-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-green-700 disabled:pointer-events-none disabled:opacity-50 dark:bg-green-500 dark:text-white dark:hover:bg-green-600 dark:focus-visible:ring-green-700"
           >
-            Crear Linea Detalle
+            Crear linea_detalle_p
           </a>
         </div>
         <form
@@ -38,7 +37,7 @@
                 class="form-control"
                 id="search"
                 th:value="${search}"
-                placeholder="Filtrar por cantidad..."
+                placeholder="Filtrar por nombre..."
                 required
               />
             </div>
@@ -48,6 +47,7 @@
               value="Filtrar"
             />
             &nbsp;&nbsp;
+
             <input
               type="button"
               class="inline-flex items-center justify-center rounded-md bg-gray-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-gray-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-700 disabled:pointer-events-none disabled:opacity-50 dark:bg-gray-500 dark:text-white dark:hover:bg-gray-600 dark:focus-visible:ring-gray-700"
@@ -66,22 +66,27 @@
               <th
                 class="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-400"
               >
-                ID Linea Detalle
+                ID
               </th>
               <th
-                class="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-400"
+                class="px-4 py-3 text-center font-medium text-gray-600 dark:text-gray-400"
               >
                 Cantidad
               </th>
               <th
                 class="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-400"
               >
-                Producto
+                Subtotal
               </th>
               <th
                 class="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-400"
               >
                 Pedido
+              </th>
+              <th
+                class="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-400"
+              >
+                Producto
               </th>
               <th
                 class="px-4 py-3 text-left font-medium text-gray-600 dark:text-gray-400"
@@ -92,35 +97,40 @@
           </thead>
           <tbody>
             <tr
-              th:each="linea_detalle : ${lineas_detalle}"
+              th:each="linea_detalle_p : ${linea_detalle_ps}"
               class="border-b border-gray-400 dark:border-gray-600 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors"
             >
               <td
                 class="px-4 py-3 text-gray-600 dark:text-gray-400"
-                th:text="${linea_detalle.id}"
+                th:text="${linea_detalle_p.id_linea_detalle}"
               ></td>
               <td
-                class="px-4 py-3 text-left text-gray-600 dark:text-gray-400"
-                th:text="${linea_detalle.cantidad}"
+                class="px-4 py-3 text-center text-gray-600 dark:text-gray-400"
+                th:text="${linea_detalle_p.cantidad}"
               ></td>
               <td
-                class="px-4 py-3 text-left text-gray-600 dark:text-gray-400"
-                th:text="${linea_detalle.producto.nombre}"
+                class="px-4 py-3 text-center text-gray-600 dark:text-gray-400"
+                th:text="${linea_detalle_p.subtotal}"
+              ></td>
+
+              <td
+                class="px-4 py-3 text-center text-gray-600 dark:text-gray-400"
+                th:text="${linea_detalle_p.pedido.id_pedido}"
               ></td>
               <td
-                class="px-4 py-3 text-left text-gray-600 dark:text-gray-400"
-                th:text="${linea_detalle.pedido.id}"
+                class="px-4 py-3 text-center text-gray-600 dark:text-gray-400"
+                th:text="${linea_detalle_p.producto.id_producto}"
               ></td>
               <td class="px-4 py-3 text-gray-600 dark:text-gray-400">
                 <div class="flex space-x-2">
                   <a
-                    th:href="@{/linea_detalle_p/editar/REST/}+${linea_detalle.id}"
+                    th:href="@{/linea_detalle_p/editar/REST/}+${linea_detalle_p.id_linea_detalle}"
                     class="inline-flex items-center justify-center rounded-md bg-blue-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-blue-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-700 disabled:pointer-events-none disabled:opacity-50 dark:bg-blue-500 dark:text-white dark:hover:bg-blue-600 dark:focus-visible:ring-blue-700"
                   >
                     Editar
                   </a>
                   <button
-                    th:onclick="'fxJSEliminarLineaDetalle(' + ${linea_detalle.id} + ')'"
+                    th:onclick="'fxJSeliminarlinea_detalle_p(' + ${linea_detalle_p.id_linea_detalle} + ')'"
                     class="inline-flex items-center justify-center rounded-md bg-red-500 px-4 py-2 text-sm font-medium text-white shadow transition-colors hover:bg-red-600 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-red-700 disabled:pointer-events-none disabled:opacity-50 dark:bg-red-500 dark:text-white dark:hover:bg-red-600 dark:focus-visible:ring-red-700"
                   >
                     Eliminar

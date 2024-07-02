@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.grupo2.frontend.dto.Linea_detalle_pDto;
 
 public interface ICrudServiceLinea_detalle_p {
+
 	List<Linea_detalle_pDto> findAllREST(String search) throws Exception;
 
 	Optional<Linea_detalle_pDto> findByIdREST(int id) throws Exception;
