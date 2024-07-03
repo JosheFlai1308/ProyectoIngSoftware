@@ -52,7 +52,7 @@ public class Linea_detalle_p {
         this.pedido = pedido;
     }
 
-    public ProductoDto loadProductoDto(){
+    public ProductoDto loadProductoDto() {
         ProductoDto prod = new ProductoDto();
         prod.setId(this.getProducto().getId());
         prod.setNombre_producto(this.getProducto().getNombre_producto());
@@ -60,7 +60,7 @@ public class Linea_detalle_p {
         return prod;
     }
 
-    public PedidoDto loadPedidoDto(){
+    public PedidoDto loadPedidoDto() {
         PedidoDto ped = new PedidoDto();
         ped.setId_pedido(this.getPedido().getId_pedido());
         ped.setTotal(this.getPedido().getTotal());
@@ -71,12 +71,13 @@ public class Linea_detalle_p {
         // Agregar otros campos necesarios aquí
         return ped;
     }
-    
+
     public Linea_detalle_pDto toDto() {
         Linea_detalle_pDto dto = new Linea_detalle_pDto();
         dto.setId_linea_detalle(this.getId_linea_detalle());
         dto.setCantidad(this.getCantidad());
         dto.setSubtotal(this.getSubtotal());
+
         dto.setProducto(this.loadProductoDto());
         dto.setPedido(this.loadPedidoDto());
         return dto;

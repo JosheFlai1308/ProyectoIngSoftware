@@ -16,10 +16,11 @@ public class Linea_detalle_pDto {
     private int id_linea_detalle;
     private int cantidad;
     private int subtotal;
+
     private ProductoDto producto;
     private PedidoDto pedido;
 
-    public ProductoEntity loadProductoEntity(){
+    public ProductoEntity loadProductoEntity() {
         ProductoEntity prod = new ProductoEntity();
         prod.setId(this.getProducto().getId());
         prod.setNombre_producto(this.getProducto().getNombre_producto());
@@ -27,7 +28,7 @@ public class Linea_detalle_pDto {
         return prod;
     }
 
-    public PedidoEntity loadPedidoEntity(){
+    public PedidoEntity loadPedidoEntity() {
         PedidoEntity ped = new PedidoEntity();
         ped.setId_pedido(this.getPedido().getId_pedido());
         ped.setTotal(this.getPedido().getTotal());
@@ -44,6 +45,7 @@ public class Linea_detalle_pDto {
         e.setId_linea_detalle(this.getId_linea_detalle());
         e.setCantidad(this.getCantidad());
         e.setSubtotal(this.getSubtotal());
+
         e.setProducto(this.loadProductoEntity());
         e.setPedido(this.loadPedidoEntity());
         return e;
@@ -54,6 +56,7 @@ public class Linea_detalle_pDto {
         dto.setId_linea_detalle(entity.getId_linea_detalle());
         dto.setCantidad(entity.getCantidad());
         dto.setSubtotal(entity.getSubtotal());
+
         dto.setProducto(entity.loadProductoDto());
         dto.setPedido(entity.loadPedidoDto());
         return dto;
