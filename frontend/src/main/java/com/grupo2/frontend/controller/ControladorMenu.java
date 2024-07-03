@@ -49,5 +49,10 @@ public class ControladorMenu {
         }
         return "f(x)/top10"; // Esto es un ejemplo, la vista real debe estar configurada
     }
+
+    @GetMapping("/secreto")
+    public String mostrarMenuSecreto(){
+        return "f(x)/menu_secreto"; // Esto es un ejemplo, la vista real debe estar configurada
+    }
 }
 
